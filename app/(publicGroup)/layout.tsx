@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-const AuthGroupLayout = async ({ children, }: { children: React.ReactNode }) => {
+const PublicGroupLayout = async ({ children, }: { children: React.ReactNode }) => {
 
    
 
@@ -15,4 +15,4 @@ const AuthGroupLayout = async ({ children, }: { children: React.ReactNode }) => 
     )
 }
 
-export default AuthGroupLayout
+export default PublicGroupLayout

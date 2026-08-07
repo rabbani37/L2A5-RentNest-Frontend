@@ -1,10 +1,13 @@
 "use server"
 
+import { cookies } from "next/headers";
+
+
 type LoginActionState = {
     success: boolean;
     statusCode: number;
     message: string;
-    data: {accessToken: string, refreshToken: string} | null;
+    data: { accessToken: string, refreshToken: string } | null;
 }
 
 
@@ -24,5 +27,22 @@ export const loginAction = async (prevState: LoginActionState, formData: FormDat
 
     const result = await res.json();
 
+    if (result.success) {
+        const cookieStore = await cookies();
+        cookieStore.set("accessToken", result.data?.accessToken || "", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            maxAge: 60 * 60 * 24, // 1 days
+        });
+        cookieStore.set("refreshToken", result.data?.refreshToken || "", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+            maxAge: 60 * 60 * 24 * 7, // 7 days
+        });
+
+      
+    };
     return result;
 }

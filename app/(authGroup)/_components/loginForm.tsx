@@ -9,24 +9,27 @@ import { Card } from '@/components/ui/card'
 import { loginAction } from '../_actions/loginAction'
 import { useActionState, useEffect } from 'react'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
+
 
 
 
 
 const LoginForm = () => {
 
+    const router = useRouter();
     const [state, actions, pending] = useActionState(loginAction, false);
-
 
     useEffect(() => {
         if (!state) return
         if (state.success) {
             toast.success(state.message);
+            router.push("/dashboard");
         } else {
             toast.error(state.message);
         }
 
-    }, [state]);
+    }, [state, router]);
 
 
 

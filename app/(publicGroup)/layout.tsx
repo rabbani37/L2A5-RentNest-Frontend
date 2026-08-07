@@ -7,7 +7,6 @@ const PublicGroupLayout = async ({ children, }: { children: React.ReactNode }) =
 
     return (
         <div >
-           ..NavBar..
             <div className='max-w-7xl mx-auto '>
                 {children}
             </div>

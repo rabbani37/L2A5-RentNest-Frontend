@@ -11,7 +11,7 @@ export default function NotFound() {
           404
         </h1>
 
-        <div className="mt-4 h-1 w-24 rounded-full bg-blue-500 mx-auto" />
+        <div className="mt-4 h-1 w-24 rounded-full bg-green-800 mx-auto" />
 
         <h2 className="mt-8 text-3xl font-bold text-white">
           Page Not Found
@@ -25,7 +25,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
           <Link
             href="/"
-            className="p-2 inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600  font-semibold text-white transition hover:bg-blue-700"
+            className="p-2 inline-flex items-center justify-center gap-2 rounded-xl bg-green-800  font-semibold text-white transition hover:bg-green-800"
           >
             <Home size={18} />
             Go Home

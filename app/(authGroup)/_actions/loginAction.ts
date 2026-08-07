@@ -1,6 +1,7 @@
 "use server"
 
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 type LoginActionState = {
@@ -42,7 +43,8 @@ export const loginAction = async (prevState: LoginActionState, formData: FormDat
             maxAge: 60 * 60 * 24 * 7, // 7 days
         });
 
-      
+        redirect("/dashboard", "replace");
+
     };
     return result;
 }

@@ -2,6 +2,7 @@ import "./globals.css";
 import { Instrument_Serif, Oxanium, Raleway } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
+import { NavBar } from "@/components/shared/navbar";
 
 const oxanium = Oxanium({subsets:['latin'],variable:'--font-sans'});
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
 
         {/* {navbar} */}
+        <NavBar />
 
         {children}
 

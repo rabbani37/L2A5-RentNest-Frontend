@@ -2,20 +2,31 @@ import "./globals.css";
 import { Instrument_Serif, Oxanium, Raleway } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
-import { NavBar } from "@/components/shared/navbar";
-
-const oxanium = Oxanium({subsets:['latin'],variable:'--font-sans'});
-
-const ralewayHeading = Raleway({subsets:['latin'],variable:'--font-heading'});
-
-const instrumentSerif = Instrument_Serif({subsets:['latin'],weight:['400'],variable:'--font-serif'});
+import Footer from "@/components/shared/footer";
 
 
-export default function RootLayout({
+const oxanium = Oxanium({ subsets: ['latin'], variable: '--font-sans' });
+
+const ralewayHeading = Raleway({ subsets: ['latin'], variable: '--font-heading' });
+
+const instrumentSerif = Instrument_Serif({ subsets: ['latin'], weight: ['400'], variable: '--font-serif' });
+
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+
+
+
+
+
+
+
+
   return (
     <html
       lang="en"
@@ -24,13 +35,15 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
 
         {/* {navbar} */}
-        <NavBar />
+
 
         {children}
 
         {/* {footer} */}
+       
 
-        < Toaster position="top-right" richColors  />
+<Footer />
+        < Toaster position="top-right" richColors />
       </body>
     </html>
   );

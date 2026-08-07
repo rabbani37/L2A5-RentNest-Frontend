@@ -1,15 +1,19 @@
 
+import Footer from '@/components/shared/footer'
+import { NavBar } from '@/components/shared/navbar'
 import React from 'react'
 
 const PublicGroupLayout = async ({ children, }: { children: React.ReactNode }) => {
 
-   
+
 
     return (
         <div >
-            <div className='max-w-7xl mx-auto '>
-                {children}
-            </div>
+            <NavBar />
+
+            {children}
+
+            
         </div>
     )
 }

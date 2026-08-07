@@ -233,6 +233,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="overflow-hidden rounded-3xl border shadow-2xl">
                 <Image
+                  loading="eager"
                   src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80"
                   alt="Modern house"
                   width={1200}
@@ -307,6 +308,7 @@ export default function HomePage() {
               {/* Image */}
               <div className="relative overflow-hidden">
                 <Image
+                loading="eager"
                   width={400}
                   height={300}
                   src={property.image}

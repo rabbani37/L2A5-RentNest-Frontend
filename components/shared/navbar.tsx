@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+
 import {
     BellIcon,
     ChevronDownIcon,
@@ -21,6 +21,9 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Link from "next/link"
+import { LogOut } from "@/service/logOut"
+
 
 const navItems = [
     { label: "Home", href: "/" },
@@ -34,21 +37,44 @@ const accountItems = [
     { label: "Notifications", href: "/cd", icon: BellIcon },
 ] as const
 
-export function NavBar() {
 
+type TUser = {
+    success: boolean,
+    statusCode: number,
+    message: string,
+    data: {
+        id: string,
+        name: string,
+        email: string;
+        role: string;
+        phone: string;
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+    }
+}
 
+type NavbarProps = {
+    user: TUser
+};
 
+export function NavBar({ user }: NavbarProps) {
 
+    const handleSignOut = async () => {
+        await LogOut()
+    }
 
 
     return (
         <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/70">
             <div className="mx-auto flex min-h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
                 <Link
-                    className="shrink-0 text-xl font-bold tracking-tight text-foreground"
+                    className="shrink-0 text-2xl font-bold tracking-tight text-foreground"
                     href="#top"
                 >
-                    Northstar
+
+                    Rent<span className="text-primary">Nest</span>
+
                 </Link>
 
                 <nav aria-label="Main navigation" className="min-w-0 flex-1 overflow-x-auto auto">
@@ -66,49 +92,64 @@ export function NavBar() {
                     </ul>
                 </nav>
 
-                <DropdownMenu>
-                    <DropdownMenuTrigger
-                        render={
-                            <Button
+                {!user.success ? <Button className=" " size={"lg"}>
+                    <Link href={"/login"}>Login</Link>
+                </Button> :
 
-                                className="shrink-0 gap-2 pl-1.5 cursor-pointer"
-                                variant="ghost"
-                            />
-                        }
-                    >
-                        <Avatar size="sm">
-                            <AvatarFallback>JD</AvatarFallback>
-                        </Avatar>
-                        <span className="hidden text-sm font-medium sm:inline">Jordan Doe</span>
-                        <ChevronDownIcon aria-hidden="true" data-icon="inline-end" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56">
-                        <DropdownMenuGroup>
-                            <DropdownMenuLabel>
-                                <span className="block">Jordan Doe</span>
-                                <span className="font-normal text-muted-foreground">jordan@example.com</span>
-                            </DropdownMenuLabel>
-                            {accountItems.map((item) => {
-                                const Icon = item.icon
-                                return (
-                                    <DropdownMenuItem key={item.href} render={<Link href={item.href} />}>
-                                        <Icon aria-hidden="true" />
-                                        {item.label}
-                                    </DropdownMenuItem>
-                                )
-                            })}
-                        </DropdownMenuGroup>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem >
-                            <SettingsIcon aria-hidden="true" />
-                            Settings
-                        </DropdownMenuItem>
-                        <DropdownMenuItem >
-                            <LogOutIcon aria-hidden="true" />
-                            Sign out
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger
+                            render={
+                                <Button
+
+                                    className="shrink-0 gap-2 pl-1.5 cursor-pointer"
+                                    variant="ghost"
+                                />
+                            }
+                        >
+                            <Avatar size="sm">
+                                <AvatarFallback></AvatarFallback>
+                            </Avatar>
+                            <span className="hidden text-sm font-medium sm:inline">
+                                {user?.data?.name || "No Name"}
+
+                            </span>
+                            <ChevronDownIcon aria-hidden="true" data-icon="inline-end" />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-56">
+                            <DropdownMenuGroup>
+                                <DropdownMenuLabel>
+                                    <span className="block">
+                                        {user?.data?.name || "No Name"}
+                                    </span>
+                                    <span className="font-normal text-muted-foreground">
+                                        {user?.data?.email || "No Email"}
+                                    </span>
+                                </DropdownMenuLabel>
+                                {accountItems.map((item) => {
+                                    const Icon = item.icon
+                                    return (
+                                        <DropdownMenuItem key={item.href} render={<Link href={item.href} />}>
+                                            <Icon aria-hidden="true" />
+                                            {item.label}
+                                        </DropdownMenuItem>
+                                    )
+                                })}
+                            </DropdownMenuGroup>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem >
+                                <SettingsIcon aria-hidden="true" />
+                                Settings
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={handleSignOut}>
+
+                                <LogOutIcon aria-hidden="true" />
+                                Sign out
+
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                }
+
             </div>
         </header>
     )

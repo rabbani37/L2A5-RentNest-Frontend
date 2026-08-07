@@ -9,9 +9,9 @@ export const getMe = async () => {
     const accessToken = cookieStore.get("accessToken")?.value;
 
     if (!accessToken) {
-        return{
-            success:false,
-            message:"User is not logged in"
+        return {
+            success: false,
+            message: "User is not logged in"
         }
     }
 
@@ -20,7 +20,12 @@ export const getMe = async () => {
         headers: {
             // authorization: `Bearer ${accessToken}`,
             cookie: `accessToken=${accessToken}`,
-            "content-type":"application/json"
+            "content-type": "application/json"
+        },
+        cache: "force-cache",
+        next: {
+            revalidate: 60 * 60 * 24,
+            tags: ["my-user"]
         }
     });
 

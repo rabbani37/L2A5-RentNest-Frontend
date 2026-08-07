@@ -1,6 +1,7 @@
 import "./globals.css";
-import { Instrument_Serif, Merriweather, Oxanium, Raleway } from "next/font/google";
+import { Instrument_Serif, Oxanium, Raleway } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Toaster } from "sonner";
 
 const oxanium = Oxanium({subsets:['latin'],variable:'--font-sans'});
 
@@ -27,7 +28,7 @@ export default function RootLayout({
 
         {/* {footer} */}
 
-        
+        < Toaster position="top-right" richColors  />
       </body>
     </html>
   );

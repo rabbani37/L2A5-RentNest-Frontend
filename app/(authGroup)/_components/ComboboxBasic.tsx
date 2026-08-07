@@ -16,7 +16,7 @@ const roleName = [
 export function ComboboxBasic() {
   return (
     <Combobox items={roleName}>
-      <ComboboxInput placeholder='TENANT, LANDLORD ' />
+      <ComboboxInput placeholder='TENANT or LANDLORD ' />
       <ComboboxContent>
         <ComboboxList>
           {(item) => (

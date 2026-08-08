@@ -1,43 +1,69 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Home } from "lucide-react";
+import { ArrowLeft, Home, Search } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-linear-to-br from-slate-950 via-slate-900 to-gray-950 px-6">
-      <div className="max-w-xl text-center">
-        <h1 className="text-xl font-extrabold tracking-widest text-white md:text-9xl">
-          404
+    <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-16">
+      <div className="w-full max-w-2xl text-center">
+        {/* 404 */}
+        <div className="relative inline-block">
+          <span className="text-[120px] font-black leading-none tracking-tightter ext-primary/10 sm:text-[160px]">
+            404
+          </span>
+
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Home className="size-14 text-primary sm:size-16" />
+          </div>
+        </div>
+
+        {/* Accent */}
+        <div className="mx-auto mt-2 h-1 w-20 rounded-full bg-primary" />
+
+        {/* Content */}
+        <h1 className="mt-8 text-3xl font-bold tracking-tight sm:text-4xl">
+          Page Not Found
         </h1>
 
-        <div className="mt-4 h-1 w-24 rounded-full bg-green-800 mx-auto" />
-
-        <h2 className="mt-8 text-3xl font-bold text-white">
-          Page Not Found
-        </h2>
-
-        <p className="mt-4 text-gray-400">
-          Sorry, the page you are looking for does not exist or may have been
-          moved.
+        <p className="mx-auto mt-4 max-w-md leading-7 text-muted-foreground">
+          Sorry, we couldn&apos;t find the page you&apos;re looking for. It may
+          have been moved, deleted, or the URL may be incorrect.
         </p>
 
-        <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        {/* Actions */}
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             href="/"
-            className="p-2 inline-flex items-center justify-center gap-2 rounded-xl bg-green-800  font-semibold text-white transition hover:bg-green-800"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
           >
-            <Home size={18} />
+            <Home className="size-4" />
             Go Home
           </Link>
 
           <button
+            type="button"
             onClick={() => window.history.back()}
-            className="inline-flex p-2 items-center justify-center gap-2 rounded-xl border w border-slate-700  font-semibold text-gray-300 transition hover:border-slate-500 hover:bg-slate-800"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-md border bg-background px-6 text-sm font-medium transition-colors hover:bg-muted"
           >
-            <ArrowLeft size={18} />
+            <ArrowLeft className="size-4" />
             Go Back
           </button>
+        </div>
+
+        {/* Property Link */}
+        <div className="mt-10 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <Search className="size-4 text-primary" />
+
+          <span>
+            Looking for a property?{" "}
+            <Link
+              href="/properties"
+              className="font-medium text-primary hover:underline"
+            >
+              Explore properties
+            </Link>
+          </span>
         </div>
       </div>
     </main>

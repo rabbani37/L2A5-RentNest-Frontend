@@ -8,7 +8,7 @@ const AuthGroupLayout = async ({ children, }: { children: React.ReactNode }) => 
 
     const user = await getMe();
 
-console.log(user);
+// console.log(user);
     return (
         <div >
             <NavBar user={user} />

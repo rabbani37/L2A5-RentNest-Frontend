@@ -6,7 +6,6 @@ import React from 'react'
 const PublicGroupLayout = async ({ children, }: { children: React.ReactNode }) => {
     const user = await getMe();
 
-    console.log(user);
 
 
     return (

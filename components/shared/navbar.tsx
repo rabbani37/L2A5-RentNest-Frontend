@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import { LogOut } from "@/service/logOut"
+import { toast } from "sonner"
+import { useEffect, useState } from "react"
 
 
 const navItems = [
@@ -60,9 +62,18 @@ type NavbarProps = {
 
 export function NavBar({ user }: NavbarProps) {
 
+    const [isLoggout, setIsLoggout] = useState(false)
+
     const handleSignOut = async () => {
         await LogOut()
+        setIsLoggout(true)
     }
+
+    useEffect(() => {
+        if (isLoggout) {
+            toast.success("User Logged out Successfully")
+        }
+    }, [isLoggout])
 
 
     return (
@@ -92,7 +103,7 @@ export function NavBar({ user }: NavbarProps) {
                     </ul>
                 </nav>
 
-                {!user.success ? <Button className=" " size={"lg"}>
+                {!user.success ? <Button size={"lg"}>
                     <Link href={"/login"}>Login</Link>
                 </Button> :
 

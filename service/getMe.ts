@@ -1,6 +1,5 @@
 "use server"
 
-import { abortOnSynchronousPlatformIOAccess } from "next/dist/server/app-render/dynamic-rendering";
 import { cookies } from "next/headers";
 
 export const getMe = async () => {
@@ -30,6 +29,6 @@ export const getMe = async () => {
     });
 
     const result = await res.json();
-    console.log("From getMe: ", result);
+    // console.log("From getMe: ", result);
     return result;
 }

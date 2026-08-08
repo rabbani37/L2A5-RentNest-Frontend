@@ -2,6 +2,8 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import jwt, { JwtPayload } from "jsonwebtoken";
+
 
 
 type LoginActionState = {
@@ -43,7 +45,21 @@ export const loginAction = async (prevState: LoginActionState, formData: FormDat
             maxAge: 60 * 60 * 24 * 7, // 7 days
         });
 
-        redirect("/dashboard", "replace");
+
+
+        const decodeToken = jwt.decode(result.data?.accessToken) as JwtPayload
+        // redirect to dashboard base on User Role
+        if (decodeToken.role === "ADMIN") {
+            redirect("admin-dashboard")
+        } else if (decodeToken.role === "LANDLORD") {
+            redirect("landlord-dashboard")
+        }
+        else if (decodeToken.role === "TENANT") {
+            redirect("dashboard")
+        }
+
+
+        
 
     };
     return result;

@@ -5,6 +5,7 @@ import {
     BellIcon,
     ChevronDownIcon,
     CreditCardIcon,
+    Home,
     LogOutIcon,
     SettingsIcon,
     UserIcon,
@@ -29,14 +30,13 @@ import { useEffect, useState } from "react"
 
 const navItems = [
     { label: "Home", href: "/" },
-    { label: "Projects", href: "#projects" },
-    { label: "Resources", href: "#resources" },
+    { label: "Properties", href: "properties" },
 ] as const
 
 const accountItems = [
     { label: "Profile", href: "/abc", icon: UserIcon },
-    { label: "Billing", href: "/ab", icon: CreditCardIcon },
-    { label: "Notifications", href: "/cd", icon: BellIcon },
+    { label: "Billing", href: "/abc", icon: CreditCardIcon },
+    { label: "Notifications", href: "/abc", icon: BellIcon },
 ] as const
 
 
@@ -83,8 +83,12 @@ export function NavBar({ user }: NavbarProps) {
                     className="shrink-0 text-2xl font-bold tracking-tight text-foreground"
                     href="#top"
                 >
-
-                    Rent<span className="text-primary">Nest</span>
+                    <span className="flex justify-items-center gap-2">
+                        <Home className="size-7 text-primary " />
+                        <span className="text-2xl font-bold">
+                                Rent<span className="text-primary">Nest</span>
+                            </span>
+                    </span>
 
                 </Link>
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+    Home,
     Mail,
     MapPin,
     Phone,
@@ -60,13 +61,14 @@ export default function Footer() {
                     {/* Brand */}
                     <div>
                         <Link href="/" className="flex w-fit items-center gap-2">
-                            <span className="flex size-9 items-center justify-center rounded-xl bg-primary font-bold text-primary-foreground">
-                                R
-                            </span>
+                           
 
-                            <span className="text-xl font-bold">
+                            <span className="flex justify-items-center gap-2">
+                        <Home className="size-6 text-primary " />
+                        <span className="text-xl font-bold">
                                 Rent<span className="text-primary">Nest</span>
                             </span>
+                    </span>
                         </Link>
 
                         <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">

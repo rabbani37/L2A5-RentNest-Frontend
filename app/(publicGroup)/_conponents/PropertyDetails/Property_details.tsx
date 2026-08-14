@@ -32,7 +32,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
 
     const property = await getSingleProperty(id)
 
-    if(!property){
+    if (!property) {
         return <SkeletonDemo />
     }
 
@@ -72,7 +72,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                     <div>
                         <div className="mb-3 flex flex-wrap items-center gap-2">
                             <Badge>
-                                {property?.category?.name||"Category"}
+                                {property?.category?.name || "Category"}
                             </Badge>
 
                             <Badge
@@ -118,6 +118,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                     {/* Main Image */}
                     <div className="overflow-hidden rounded-2xl border bg-muted md:col-span-5 lg:row-span-2">
                         <Image
+                            loading="eager"
                             width={500}
                             height={300}
                             src={property.images[0]}
@@ -132,6 +133,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                     <div className=" md:col-span-3 space-y-3">
                         <div className="overflow-hidden rounded-2xl border bg-muted ">
                             <Image
+                                loading="eager"
                                 width={500}
                                 height={300}
                                 src={property.images[1]}
@@ -143,8 +145,8 @@ export default async function PropertyDetails({ id }: { id: string }) {
                         <div className=" space-y-1 overflow-hidden rounded-2xl border bg-muted  h-96">
 
                             <Image
+                                loading="eager"
                                 width={500}
-
                                 height={300}
                                 src={property.images[2]}
                                 alt={`${property.title} view`}
@@ -153,8 +155,8 @@ export default async function PropertyDetails({ id }: { id: string }) {
 
 
                             <Image
+                                loading="eager"
                                 width={500}
-
                                 height={300}
                                 src={property.images[3]}
                                 alt={`${property.title} view`}
@@ -245,7 +247,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                                 <InfoRow
                                     icon={Home}
                                     label="Property Type"
-                                    value={property?.category?.name||"Category"}
+                                    value={property?.category?.name || "Category"}
                                 />
 
                                 <InfoRow
@@ -312,7 +314,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                             <CardContent>
                                 <div className="flex items-center gap-3">
                                     <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
-                                        {property.landlord.name.charAt(0) ||"ABC"}
+                                        {property.landlord.name.charAt(0) || "ABC"}
                                     </div>
 
                                     <div>

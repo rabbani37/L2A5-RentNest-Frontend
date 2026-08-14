@@ -76,6 +76,7 @@ export const PropertyRecords = ({
 
                         <div className="relative h-60 overflow-hidden bg-muted">
                             <Image
+                                loading="eager"
                                 width={300}
                                 height={200}
                                 src={property.images?.[2] || "/placeholder-property.jpg"}

@@ -1,20 +1,66 @@
+import { getProperties } from "./_actionProperties/getProperties";
+import PropertyFilters from "./_components/PropertyFilters";
+import { PropertyRecords } from "./_components/PropertyRecords";
+// import PropertyPagination from "./_components/PropertyPagination";
 
-import React from 'react'
+export default async function PropertiesPage() {
 
-const PropertiesPages = () => {
+
+  const properties = await getProperties();
+
+  // console.log("properties: ", properties);
+
+
+  
+
+
+
+
   return (
-    <div>
-      <h2 className='text-3xl font-medium'>PropertiesPages</h2>
+    <main className="min-h-screen bg-background">
+      {/* =====================================================
+          HEADER
+      ====================================================== */}
+      <section className="border-b bg-muted/30">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+              RentNest Properties
+            </p>
 
-      <div>
-       
+            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Find your perfect home
+            </h1>
 
-      </div>
+            <p className="mt-3 text-muted-foreground">
+              Explore apartments, houses, studios, and rooms available for
+              rent in your preferred location.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          CONTENT
+      ====================================================== */}
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        {/* Filters */}
+        <div className="">
+
+          <PropertyFilters />
 
 
+          {/* Records */}
+          <div className="mt-10 ">
+            <PropertyRecords properties={properties} />
+          </div>
+        </div>
 
-    </div>
-  )
+        {/* Pagination */}
+        <div className="mt-12">
+          {/* <PropertyPagination /> */}
+        </div>
+      </section>
+    </main>
+  );
 }
-
-export default PropertiesPages

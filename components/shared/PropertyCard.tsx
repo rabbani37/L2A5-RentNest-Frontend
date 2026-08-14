@@ -4,50 +4,35 @@ import Image from 'next/image';
 import { Badge } from '../ui/badge';
 import { ArrowRight, Bath, BedDouble, MapPin, Maximize, Star } from 'lucide-react';
 import Link from 'next/link';
+import { IAllProperty } from '@/app/(publicGroup)/_conponents/FeaturedProperties';
 
 
-export interface IProperty {
-    id: string;
-    title: string;
-    location: string;
-    city: string;
-    price: string;
-    bedrooms: number;
-    bathrooms: number;
-    size: number;
-    category: string;
-    availability: string;
-    rating: string;
-    image: string;
-    amenities: string[];
-}
 
-interface IPropertyCardProps {
-    properties: IProperty[];
+
+export interface IPropertiesCardProps {
+    properties: IAllProperty[];
 }
 
 
 
-
-
-
-const PropertyCard = ({ properties }: IPropertyCardProps) => {
-
+const PropertyCard = ({ properties }: IPropertiesCardProps) => {
 
 
     return (
         <>
-            {properties.map((property: IProperty) => (
+            {properties.map((property: IAllProperty) => (
+                // console.log(property),
                 <Card
                     key={property.id}
                     className="group overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-                    {/* Image */}
+                  
+             
                     <div className="relative h-60 overflow-hidden bg-muted">
                         <Image
                             width={300}
                             height={200}
-                            src={property.image}
+                            src={property.images?.[2] || "/placeholder-property.jpg"}
                             alt={property.title}
                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
@@ -57,7 +42,8 @@ const PropertyCard = ({ properties }: IPropertyCardProps) => {
 
                         {/* Category */}
                         <Badge className="absolute left-3 top-3">
-                            {property.category}
+                            {property.category?.name || "category"}
+                            {/* {property.category. || "/category"} */}
                         </Badge>
 
                         {/* Availability */}
@@ -73,7 +59,7 @@ const PropertyCard = ({ properties }: IPropertyCardProps) => {
                         {/* Rating */}
                         <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-background/90 px-2.5 py-1 text-xs font-medium backdrop-blur">
                             <Star className="size-3 fill-current text-primary" />
-                            {property.rating}
+                            {property.rating||"4.8"}
                         </div>
                     </div>
 
@@ -144,23 +130,7 @@ const PropertyCard = ({ properties }: IPropertyCardProps) => {
                         </div>
 
                         {/* Amenities */}
-                        <div className="mt-4 flex flex-wrap gap-1.5">
-                            {property.amenities.slice(0, 3).map((amenity: string) => (
-                                <Badge
-                                    key={amenity}
-                                    variant="outline"
-                                    className="font-normal"
-                                >
-                                    {amenity}
-                                </Badge>
-                            ))}
-
-                            {property.amenities.length > 3 && (
-                                <Badge variant="outline" className="font-normal">
-                                    +{property.amenities.length - 3} more
-                                </Badge>
-                            )}
-                        </div>
+                        
 
                         {/* View Details */}
                         <Link

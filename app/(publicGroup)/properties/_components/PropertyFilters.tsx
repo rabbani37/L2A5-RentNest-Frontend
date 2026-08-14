@@ -1,0 +1,122 @@
+"use client";
+
+import { Search, SlidersHorizontal, RotateCcw, MapPin } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+
+export default function PropertyFilters() {
+    return (
+        <div className="rounded-2xl border bg-background p-5 shadow-sm sm:p-6">
+            {/* Header */}
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-2">
+                    <div className="flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <SlidersHorizontal className="size-4" />
+                    </div>
+
+                    <div>
+                        <h2 className="font-semibold">Find a property</h2>
+                        <p className="text-sm text-muted-foreground">
+                            Filter properties based on your needs
+                        </p>
+                    </div>
+                </div>
+
+                <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-fit gap-2 text-muted-foreground hover:text-primary"
+                >
+                    <RotateCcw className="size-4 " />
+                    Reset
+                </Button>
+            </div>
+
+            {/* Search */}
+            <div className="relative mt-6">
+                <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+
+                <Input
+                    name="title"
+                    placeholder="Search properties by title..."
+                    className="h-12 pl-9"
+                />
+            </div>
+
+            {/* Filters */}
+
+            {/* Category */}
+            <form className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <Select>
+                    <SelectTrigger className="h-12 w-full">
+                        <SelectValue placeholder="Property Category" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                        <SelectItem value="apartment">Apartment</SelectItem>
+                        <SelectItem value="house">House</SelectItem>
+                        <SelectItem value="studio">Studio</SelectItem>
+                        <SelectItem value="room">Room</SelectItem>
+                    </SelectContent>
+                </Select>
+
+                {/* City */}
+                <Select>
+                    <SelectTrigger className="h-12 w-full">
+                        <SelectValue placeholder="City" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                        <SelectItem value="dhaka">Dhaka</SelectItem>
+                        <SelectItem value="chittagong">Chittagong</SelectItem>
+                        <SelectItem value="khulna">Khulna</SelectItem>
+                        <SelectItem value="jashore">Jashore</SelectItem>
+                        <SelectItem value="rajshahi">Rajshahi</SelectItem>
+                    </SelectContent>
+                </Select>
+
+                {/* Location */}
+                <div className="relative">
+                    <MapPin className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+
+                    <Input
+                        name="location"
+                        placeholder="Location / Area"
+                        className="h-12 pl-9"
+                    />
+                </div>
+
+                {/* Min Price */}
+                <Input
+                    name="minPrice"
+                    type="number"
+                    placeholder="Minimum price"
+                    className="h-12"
+                />
+
+                {/* Max Price */}
+                <Input
+                    name="maxPrice"
+                    type="number"
+                    placeholder="Maximum price"
+                    className="h-12"
+                />
+
+                {/* Apply Button */}
+                <Button className="h-12 gap-2">
+                    <Search className="size-4" />
+                    Apply Filters
+                </Button>
+            </form>
+
+        </div>
+    );
+}

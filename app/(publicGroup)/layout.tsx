@@ -8,7 +8,9 @@ const PublicGroupLayout = async ({ children, }: { children: React.ReactNode }) =
 
     return (
         <div >
-            <NavBar user={user}/>
+
+
+            <NavBar user={user} />
 
             {children}
 

@@ -1,39 +1,36 @@
+"use client"
+
+
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, BedDouble, Building2, Home } from 'lucide-react';
+import { ArrowRight, BedDoubleIcon, Building2, Home } from 'lucide-react';
 import React from 'react';
+import { CgStudio } from 'react-icons/cg';
 
-const CategoriesComponent = () => {
 
 
-      const categories = [
-        {
-            title: "Apartments",
-            description: "Find comfortable apartments in great locations.",
-            icon: Building2,
-        },
-        {
-            title: "Family Houses",
-            description: "Spacious homes perfect for families.",
-            icon: Home,
-        },
-        {
-            title: "Studio",
-            description: "Affordable Studio for students and professionals.",
-            icon: BedDouble,
-        },
-        {
-            title: "Dublex",
-            description: "Affordable Dublex for students and professionals.",
-            icon: BedDouble,
-        },
-    ];
+export interface TCategories {
+    id?: string;
+    name: string;
+    createdAt?: string
+}
+
+interface TCategoriesProps {
+    categories: TCategories[]
+}
+
+
+
+const CategoriesComponent = ({ categories }: TCategoriesProps) => {
+
+
+
 
 
 
 
 
     return (
-         <section className="border-y bg-muted/30">
+        <section className="border-y bg-muted/30">
             <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
                 <div className="">
                     <p className="text-sm font-semibold uppercase tracking-wider text-primary">
@@ -52,24 +49,29 @@ const CategoriesComponent = () => {
 
                 <div className="mt-10 grid gap-6 grid-cols-2 md:grid-cols-4">
                     {categories.map((category) => {
-                        const Icon = category.icon;
+
 
                         return (
                             <Card
-                                key={category.title}
+                                key={category.name}
                                 className=" group cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg"
                             >
-                                <CardContent className="p-7">
+                                <CardContent className="p-7 text-center flex flex-col items-center justify-center">
                                     <div className="flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                                        <Icon className="size-7" />
+                                        <div className="size-7">
+                                            {category.name === "Apartments" ? <Building2 className='size-7' /> :""}
+                                            {category.name === "House" ? <Home /> :""}
+                                            {category.name === "Studio" ? <CgStudio className='size-7' /> :""}
+                                            {category.name === "Dublex" ? <BedDoubleIcon /> :""}
+                                        </div>
                                     </div>
 
                                     <h3 className="mt-6 text-xl font-semibold">
-                                        {category.title}
+                                        {category.name}
                                     </h3>
 
                                     <p className="mt-2 leading-6 text-muted-foreground">
-                                        {category.description}
+                                        {/* {category.description} */}
                                     </p>
 
                                     <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-primary">

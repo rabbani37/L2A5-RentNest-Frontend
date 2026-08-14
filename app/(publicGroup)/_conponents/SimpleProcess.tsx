@@ -1,3 +1,5 @@
+"use client"
+
 import { Home, Search, ShieldCheck } from 'lucide-react';
 import React from 'react';
 

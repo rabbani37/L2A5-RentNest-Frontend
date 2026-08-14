@@ -1,27 +1,56 @@
-import { getMe } from "@/service/getMe";
-import HomePage from "./_conponents/homePage";
+import { getAllProperties } from "./_actions/getAllProperties";
+import { getPropertyCategories } from "./_actions/getPropertiesByCategory";
+import CategoriesComponent from "./_conponents/CategoriesComponent";
+import Cta from "./_conponents/Cta";
+import FeaturedProperties from "./_conponents/FeaturedProperties";
+import Hero_Home from "./_conponents/hero_home";
+import SimpleProcess from "./_conponents/SimpleProcess";
+
+
+
+
 
 
 
 
 export default async function Home() {
 
+  const allPropertes = await getAllProperties()
 
-
-
+  const categories = await getPropertyCategories()
 
   return (
-    <div >
-      <HomePage />
+    <main className="min-h-screen bg-background">
+      {/* ===HERO=== */}
+      <Hero_Home />
+
+
+
+      {/* ===FEATURED PROPERTIES=== */}
+
+      <FeaturedProperties allPropertes={allPropertes} />
 
 
 
 
 
+      {/* ===CATEGORIES=== */}
+      <CategoriesComponent categories={categories} />
 
 
 
 
-    </div>
+      {/* ===HOW IT WORKS=== */}
+
+      <SimpleProcess />
+
+
+
+
+      {/* ===CTA=== */}
+      <Cta />
+
+
+    </main>
   );
 }

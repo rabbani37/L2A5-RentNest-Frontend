@@ -21,7 +21,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { getSingleProperty } from "../../properties/_actionProperties/getSingleProperty";
-import LoadingSingleProperty from "../../properties/[id]/LoadingSingleProperty";
+import { SkeletonDemo } from "../../properties/[id]/SkeletoneDemo";
 
 
 
@@ -33,7 +33,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
     const property = await getSingleProperty(id)
 
     if(!property){
-        return <LoadingSingleProperty />
+        return <SkeletonDemo />
     }
 
     return (

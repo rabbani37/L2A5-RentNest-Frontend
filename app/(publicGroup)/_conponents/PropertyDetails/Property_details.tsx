@@ -20,58 +20,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
-import { IAllPropertes, IAllProperty } from "../FeaturedProperties";
-import { IPropertiesCardProps } from "@/components/shared/PropertyCard";
 import { getSingleProperty } from "../../properties/_actionProperties/getSingleProperty";
 import LoadingSingleProperty from "../../properties/[id]/LoadingSingleProperty";
 
-
-// const property = {
-//     id: "fe30b66b-1e9c-434d-9b4b-67fb2e5cf07e",
-
-//     title: "2 Bedroom Apartment in Gulshan",
-
-//     description:
-//         "A spacious and modern 2-bedroom apartment located in the heart of Gulshan, close to shopping malls, restaurants, schools, and other essential facilities. The apartment is perfect for a small family or working professionals looking for a comfortable home in Dhaka.",
-
-//     price: "25,000",
-
-//     location: "Road 11, Gulshan 1",
-
-//     city: "Dhaka",
-
-//     bedrooms: 2,
-
-//     bathrooms: 2,
-
-//     size: 1200,
-
-//     category: "Apartment",
-
-//     availability: "AVAILABLE",
-
-//     amenities: [
-//         "Parking",
-//         "WiFi",
-//         "AC",
-//         "Generator Backup",
-//     ],
-
-//     images: [
-//         "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80",
-//         "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
-//         "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
-//         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-//     ],
-
-//     landlord: {
-//         name: "Rifat Ahmed",
-//         email: "rifat@gmail.com",
-//         phone: "01898727345",
-//     },
-
-//     createdAt: "July 8, 2026",
-// };
 
 
 

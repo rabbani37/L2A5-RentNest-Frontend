@@ -31,7 +31,7 @@ import { useEffect, useState } from "react"
 const navItems = [
     { label: "Home", href: "/" },
     { label: "Dashboard", href: "/dashboard" },
-    { label: "Properties", href: "properties" },
+    { label: "Properties", href: "/properties" },
 ] as const
 
 const accountItems = [

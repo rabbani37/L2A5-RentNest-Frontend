@@ -12,6 +12,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRef } from "react";
 
 export default function PropertyFilters() {
 
@@ -19,8 +20,7 @@ export default function PropertyFilters() {
     const searchParams = useSearchParams()
     const searchValue = searchParams.get("title") as string
     const router = useRouter()
-
-
+    const debouncedRefrence = useRef<ReturnType<typeof setTimeout> | null>(null)
 
 
 
@@ -30,16 +30,25 @@ export default function PropertyFilters() {
     const handleSearch = (value: string) => {
 
 
-        const paramSearch = new URLSearchParams()
-        if (value) {
-            paramSearch.set("title", value)
-        }
-        else {
-            paramSearch.delete("title")
+        if (debouncedRefrence.current) {
+            clearTimeout(debouncedRefrence.current)
         }
 
-        router.replace(`${pathname}?${paramSearch.toString()}`)
-        console.log(value);
+
+
+        debouncedRefrence.current = setTimeout(() => {
+
+            const paramSearch = new URLSearchParams()
+            if (value) {
+                paramSearch.set("title", value)
+            }
+            else {
+                paramSearch.delete("title")
+            }
+
+            router.replace(`${pathname}?${paramSearch.toString()}`)
+        }, 500);
+
     }
 
 

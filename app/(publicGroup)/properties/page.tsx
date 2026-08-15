@@ -1,6 +1,9 @@
+
 import { getProperties } from "./_actionProperties/getProperties";
 import PropertyFilters from "./_components/PropertyFilters";
 import { PropertyRecords } from "./_components/PropertyRecords";
+
+
 // import PropertyPagination from "./_components/PropertyPagination";
 
 export default async function PropertiesPage({
@@ -10,7 +13,8 @@ export default async function PropertiesPage({
 }) {
 
   const searchQuery = await searchParams;
-  const properties = await getProperties({searchQuery});
+  const properties = await getProperties({ searchQuery });
+
 
 
   return (
@@ -19,7 +23,7 @@ export default async function PropertiesPage({
           HEADER
       ====================================================== */}
       <section className="border-b bg-muted/30">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className=" max-w-7xl px-4 py-12 sm:px-6 lg:px-8 grid grid-cols-2">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">
               RentNest Properties
@@ -34,6 +38,8 @@ export default async function PropertiesPage({
               rent in your preferred location.
             </p>
           </div>
+
+          
         </div>
       </section>
 

@@ -12,47 +12,52 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function PropertyFilters() {
 
+
+
+
+
     const pathname = usePathname()
-    const searchParams = useSearchParams()
-    const searchValue = searchParams.get("title") as string
+    const searchParamsHook = useSearchParams()
+    const searchValue = searchParamsHook.get("title") as string || ""
     const router = useRouter()
+
     const debouncedRefrence = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-
-
-
+    const [titleValue, setTitileValue] = useState(searchValue)
 
 
     const handleSearch = (value: string) => {
 
-
+        setTitileValue(value)
         if (debouncedRefrence.current) {
             clearTimeout(debouncedRefrence.current)
         }
 
-
-
         debouncedRefrence.current = setTimeout(() => {
 
-            const paramSearch = new URLSearchParams()
+            const params = new URLSearchParams(searchParamsHook.toString())
             if (value) {
-                paramSearch.set("title", value)
+                params.set("title", value)
             }
             else {
-                paramSearch.delete("title")
+                params.delete("title")
             }
 
-            router.replace(`${pathname}?${paramSearch.toString()}`)
+            router.replace(`${pathname}?${params.toString()}`)
         }, 500);
 
     }
 
-
-
+    useEffect(() => {
+        return () => {
+            if (debouncedRefrence.current) {
+                clearTimeout(debouncedRefrence.current);
+            }
+        }
+    }, [])
 
 
 
@@ -91,8 +96,8 @@ export default function PropertyFilters() {
                 <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
                 <Input
-                    defaultValue={searchValue ? searchValue.toString() : ""}
-                    onChange={(e) => handleSearch(e.target.value)}
+                    value={titleValue}
+                    onChange={(e) => { handleSearch(e.target.value) }}
 
                     name="title"
                     placeholder="Search properties by title..."

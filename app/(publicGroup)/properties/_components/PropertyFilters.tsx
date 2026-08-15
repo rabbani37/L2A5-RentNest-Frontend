@@ -98,7 +98,6 @@ export default function PropertyFilters() {
                 <Input
                     value={titleValue}
                     onChange={(e) => { handleSearch(e.target.value) }}
-
                     name="title"
                     placeholder="Search properties by title..."
                     className="h-12 pl-9"

@@ -3,17 +3,14 @@ import PropertyFilters from "./_components/PropertyFilters";
 import { PropertyRecords } from "./_components/PropertyRecords";
 // import PropertyPagination from "./_components/PropertyPagination";
 
-export default async function PropertiesPage() {
+export default async function PropertiesPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
 
-
-  const properties = await getProperties();
-
-  // console.log("properties: ", properties);
-
-
-  
-
-
+  const searchQuery = await searchParams;
+  const properties = await getProperties({searchQuery});
 
 
   return (

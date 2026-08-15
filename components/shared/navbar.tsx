@@ -34,11 +34,11 @@ const navItems = [
     { label: "Properties", href: "/properties" },
 ] as const
 
-const accountItems = [
-    { label: "Profile", href: "/profile", icon: UserIcon },
+// const accountItems = [
+//     { label: "Profile", href: "/profile", icon: UserIcon },
     // { label: "Billing", href: "/abcd", icon: CreditCardIcon },
     // { label: "Notifications", href: "/abcde", icon: BellIcon },
-] as const
+// ] as const
 
 
 type TUser = {
@@ -144,15 +144,7 @@ export function NavBar({ user }: NavbarProps) {
                                         {user?.data?.email || "No Email"}
                                     </span>
                                 </DropdownMenuLabel>
-                                {accountItems.map((item) => {
-                                    const Icon = item.icon
-                                    return (
-                                        <DropdownMenuItem key={item.href} render={<Link href={item.href} />}>
-                                            <Icon aria-hidden="true" />
-                                            {item.label}
-                                        </DropdownMenuItem>
-                                    )
-                                })}
+                                
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
                             {/* <DropdownMenuItem >

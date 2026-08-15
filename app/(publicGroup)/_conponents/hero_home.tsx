@@ -8,9 +8,29 @@ import { Input } from '@/components/ui/input';
 import { MapPin, Search, SlidersHorizontal } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 const Hero_Home = () => {
+
+
+
+  const searchParams = useSearchParams()
+  const searchValue = searchParams.get("title") as string
+
+
+  const handleSearch = (value: string) => {
+    const titleValue = value
+
+
+    console.log(titleValue);
+
+
+
+  }
+
+
+
   return (
     <section className="relative overflow-hidden border-b">
       <div className="absolute inset-0 -z-10 bg-linear-to-br from-primary/10 via-background to-background" />
@@ -40,18 +60,14 @@ const Hero_Home = () => {
                   <MapPin className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
                   <Input
+                    name='title'
+                    defaultValue={searchValue ? searchValue.toString() : ""}
                     placeholder="Search by city, neighborhood, or address..."
                     className="h-12 pl-9"
                   />
                 </div>
 
-                {/* City */}
-
-
-                {/* Category */}
-
-
-                <Button className="h-12 gap-2">
+                <Button type='submit' className="h-12 gap-2">
                   <Search className="size-4" />
                   Search
                 </Button>

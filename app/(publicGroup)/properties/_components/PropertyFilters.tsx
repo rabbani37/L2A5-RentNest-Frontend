@@ -11,8 +11,45 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function PropertyFilters() {
+
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const searchValue = searchParams.get("title") as string
+    const router = useRouter()
+
+
+
+
+
+
+
+
+    const handleSearch = (value: string) => {
+
+
+        const paramSearch = new URLSearchParams()
+        if (value) {
+            paramSearch.set("title", value)
+        }
+        else {
+            paramSearch.delete("title")
+        }
+
+        router.replace(`${pathname}?${paramSearch.toString()}`)
+        console.log(value);
+    }
+
+
+
+
+
+
+
+
+
     return (
         <div className="rounded-2xl border bg-background p-5 shadow-sm sm:p-6">
             {/* Header */}
@@ -45,6 +82,9 @@ export default function PropertyFilters() {
                 <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
                 <Input
+                    defaultValue={searchValue ? searchValue.toString() : ""}
+                    onChange={(e) => handleSearch(e.target.value)}
+
                     name="title"
                     placeholder="Search properties by title..."
                     className="h-12 pl-9"
@@ -60,7 +100,7 @@ export default function PropertyFilters() {
                         <SelectValue placeholder="Property Category" />
                     </SelectTrigger>
 
-                    <SelectContent>
+                    <SelectContent >
                         <SelectItem value="apartment">Apartment</SelectItem>
                         <SelectItem value="house">House</SelectItem>
                         <SelectItem value="studio">Studio</SelectItem>

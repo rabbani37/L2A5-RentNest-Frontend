@@ -2,8 +2,7 @@
 
 
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, BedDoubleIcon, Building2, Home } from 'lucide-react';
-import React from 'react';
+import { ArrowRight, BedDoubleIcon, Building2, Home as HomeIcon } from 'lucide-react';
 import { CgStudio } from 'react-icons/cg';
 
 
@@ -21,10 +20,6 @@ interface TCategoriesProps {
 
 
 const CategoriesComponent = ({ categories }: TCategoriesProps) => {
-
-
-
-
 
 
 
@@ -59,8 +54,8 @@ const CategoriesComponent = ({ categories }: TCategoriesProps) => {
                                 <CardContent className="p-7 text-center flex flex-col items-center justify-center">
                                     <div className="flex size-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                                         <div className="size-7">
-                                            {category.name === "Apartments" ? <Building2 className='size-7' /> :""}
-                                            {category.name === "House" ? <Home /> :""}
+                                            {category.name === "Apartments" ? <Building2  /> :""}
+                                            {category.name === "House" ? <HomeIcon /> :""}
                                             {category.name === "Studio" ? <CgStudio className='size-7' /> :""}
                                             {category.name === "Dublex" ? <BedDoubleIcon /> :""}
                                         </div>

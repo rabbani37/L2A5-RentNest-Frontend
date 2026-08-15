@@ -40,8 +40,6 @@ export default async function PropertyDetails({ id }: { id: string }) {
         <main className="min-h-screen bg-background">
             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 
-                {/* =====BREADCRUMB====== */}
-
                 <div className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                     <Link
                         href="/"
@@ -112,7 +110,6 @@ export default async function PropertyDetails({ id }: { id: string }) {
                     </div>
                 </div>
 
-                {/* =======IMAGE GALLERY======== */}
 
                 <div className="grid gap-3 md:grid-cols-8 ">
                     {/* Main Image */}
@@ -167,11 +164,9 @@ export default async function PropertyDetails({ id }: { id: string }) {
                     </div>
                 </div>
 
-                {/* ==========MAIN CONTENT================ */}
 
                 <div className="mt-10 grid gap-8 lg:grid-cols-3">
 
-                    {/* ==========LEFT CONTENT====== */}
 
                     <div className="space-y-8 lg:col-span-2">
 
@@ -271,7 +266,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                         </section>
                     </div>
 
-                    {/* ======RIGHT SIDEBAR====== */}
+                  
 
                     <aside className="space-y-6">
 
@@ -314,7 +309,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                             <CardContent>
                                 <div className="flex items-center gap-3">
                                     <div className="flex size-11 items-center justify-center rounded-full bg-primary/10 font-semibold text-primary">
-                                        {property.landlord.name.charAt(0) || "ABC"}
+                                        {property?.landlord?.name.charAt(0) || "ABC"}
                                     </div>
 
                                     <div>
@@ -369,8 +364,15 @@ export default async function PropertyDetails({ id }: { id: string }) {
     );
 }
 
-/* =======PROPERTY STAT========= */
 
+
+
+
+
+
+
+
+// reusable Function
 function PropertyStat({
     icon: Icon,
     value,
@@ -398,9 +400,6 @@ function PropertyStat({
         </div>
     );
 }
-
-/* ========INFO ROW========= */
-
 function InfoRow({
     icon: Icon,
     label,

@@ -168,7 +168,7 @@ export default function PropertyFilters() {
                             <SelectItem value="apartment">Apartment</SelectItem>
                             <SelectItem value="house">House</SelectItem>
                             <SelectItem value="studio">Studio</SelectItem>
-                            <SelectItem value="duplex">Room</SelectItem>
+                            <SelectItem value="duplex">Duplex</SelectItem>
                         </SelectContent>
                     </Select>
 

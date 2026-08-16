@@ -1,4 +1,4 @@
-import { getAllProperties } from "./_actions/getAllProperties";
+import {  getPropertiesForHome } from "./_actions/getPropertiesForHome";
 import { getPropertyCategories } from "./_actions/getPropertiesByCategory";
 import CategoriesComponent from "./_conponents/CategoriesComponent";
 import Cta from "./_conponents/Cta";
@@ -15,7 +15,11 @@ import SimpleProcess from "./_conponents/SimpleProcess";
 
 export default async function Home() {
 
-  const allPropertes = await getAllProperties()
+  const properties = await getPropertiesForHome()
+
+  // console.log("From Homepage...", propertesForHome);
+
+
 
   const categories = await getPropertyCategories()
 
@@ -28,7 +32,7 @@ export default async function Home() {
 
       {/* ===FEATURED PROPERTIES=== */}
 
-      <FeaturedProperties allPropertes={allPropertes} />
+      <FeaturedProperties properties ={properties}  />
 
 
 

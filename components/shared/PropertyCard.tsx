@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Badge } from '../ui/badge';
 import { ArrowRight, Bath, BedDouble, MapPin, Maximize, Star } from 'lucide-react';
 import Link from 'next/link';
-import { IAllProperty, IPropertiesCardProps } from '@/lib/type';
+import { IPropertiesCardProps, IProperty } from '@/lib/type';
 
 
 
@@ -14,16 +14,17 @@ import { IAllProperty, IPropertiesCardProps } from '@/lib/type';
 
 const PropertyCard = ({ properties }: IPropertiesCardProps) => {
 
-    // console.log("shardPropertyCard,", properties);
+    console.log("PropertyCard.......,", properties);
+
+
     return (
         <>
-            {properties.data.map((property: IAllProperty) => (
+            {properties.map((property: IProperty) => (
 
                 < Card
                 key = { property.id }
                 className = "group overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
-
 
                 <div className="relative h-60 overflow-hidden bg-muted">
                     <Image

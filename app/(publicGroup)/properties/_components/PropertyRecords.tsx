@@ -5,7 +5,7 @@ import { ArrowRight, Bath, BedDouble, MapPin, Maximize, Star } from "lucide-reac
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { IAllProperty, IPropertiesCardProps } from "@/lib/type";
+import { IPropertiesCardProps, IProperty } from "@/lib/type";
 
 
 
@@ -33,7 +33,7 @@ export const PropertyRecords = ({
                     search criteria. Try changing your filters.
                 </p>
 
-                <Button className="mt-6" variant="outline">
+                <Button  className="mt-6" variant="outline">
                     Clear Filters
                 </Button>
             </div>
@@ -64,7 +64,7 @@ export const PropertyRecords = ({
 
 
             <div className="grid lg:grid-cols-2  gap-3 ">
-                {properties.map((property: IAllProperty) => (
+                {properties.map((property: IProperty) => (
                     <Card
                         key={property.id}
                         className="group  w-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"

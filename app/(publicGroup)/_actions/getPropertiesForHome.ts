@@ -1,6 +1,6 @@
 "use server"
 
-export const getAllProperties = async () => {
+export const getPropertiesForHome = async () => {
 
     const res = await fetch(`${process.env.BACKEND_API_URL}/api/properties?take=3`, {
         method: "GET",
@@ -17,5 +17,5 @@ export const getAllProperties = async () => {
     const result = await res.json()
 
 
-    return result.data;
+    return result.data.data;
 }

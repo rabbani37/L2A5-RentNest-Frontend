@@ -1,4 +1,4 @@
-export type IAllProperty = {
+export type IProperty = {
     id: string;
     title: string;
     description: string;
@@ -29,24 +29,17 @@ export type IAllProperty = {
         email: string;
         phone: string | null;
     };
-
-}
-export type IAllPropertes = {
-    allPropertes: IAllProperty[];
 };
 
-export interface IPropertiesCardProps {
-    properties: IAllProperty[];
-}
 
 
 
-export type IPropertyResponse = {
-    properties: IAllProperty[];
-    meta: {
-        page: number;
-        take: number;
-        total: number;
-        totalPages: number;
-    };
+
+
+
+export type IPropertiesCardProps = {
+    properties: IProperty[];
 };
+
+
+

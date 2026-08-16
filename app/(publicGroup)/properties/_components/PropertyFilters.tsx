@@ -26,6 +26,10 @@ export default function PropertyFilters() {
 
     const debouncedRefrence = useRef<ReturnType<typeof setTimeout> | null>(null)
     const [titleValue, setTitileValue] = useState(searchValue)
+    const formRef = useRef<HTMLFormElement>(null);
+
+
+
 
 
     const handleSearch = (value: string) => {
@@ -97,6 +101,7 @@ export default function PropertyFilters() {
 
         params.set("page", "1");
         router.replace(`${pathname}?${params.toString()}`);
+
     };
 
 
@@ -112,7 +117,12 @@ export default function PropertyFilters() {
 
 
 
+    const handleReset = () => {
+        // formRef.current?.reset()
+        formRef.current?.reset()
 
+        router.replace(pathname);
+    };
 
 
     return (
@@ -147,6 +157,7 @@ export default function PropertyFilters() {
                     </div>
 
                     <Button
+                        onClick={handleReset}
                         variant="secondary"
                         size="sm"
                         className="w-fit gap-2 text-muted-foreground hover:text-primary"
@@ -157,14 +168,14 @@ export default function PropertyFilters() {
                 </div>
 
                 {/* Filters */}
-                <form onSubmit={handleFilters} className="mt-5  space-y-5">
+                <form ref={formRef} onSubmit={handleFilters} className="mt-5  space-y-5">
                     <Select name="type">
                         <SelectTrigger className="h-12 w-full p-5">
                             <SelectValue placeholder="Property Category" />
                         </SelectTrigger>
 
                         <SelectContent  >
-                            <SelectItem value="">All</SelectItem>
+                            <SelectItem value="">No Category</SelectItem>
                             <SelectItem value="apartment">Apartment</SelectItem>
                             <SelectItem value="house">House</SelectItem>
                             <SelectItem value="studio">Studio</SelectItem>
@@ -179,7 +190,8 @@ export default function PropertyFilters() {
                         </SelectTrigger>
 
                         <SelectContent>
-                            <SelectItem value="">All</SelectItem>
+                            <SelectItem value="">No City</SelectItem>
+
                             <SelectItem value="dhaka">Dhaka</SelectItem>
                             <SelectItem value="chittagong">Chittagong</SelectItem>
                             <SelectItem value="khulna">Khulna</SelectItem>

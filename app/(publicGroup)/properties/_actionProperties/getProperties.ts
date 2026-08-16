@@ -12,8 +12,30 @@ export const getProperties = async ({ searchQuery }: {
     if (searchQuery && searchQuery.title) {
         params.set("title", searchQuery.title as string)
     }
+    if (searchQuery && searchQuery.type) {
+        params.set("type", searchQuery.type as string);
+    }
 
-  
+    if (searchQuery && searchQuery.city) {
+        params.set("city", searchQuery.city as string);
+    }
+
+    if (searchQuery && searchQuery.location) {
+        params.set("location", searchQuery.location as string);
+    }
+
+    if (searchQuery && searchQuery.minPrice) {
+        params.set("minPrice", searchQuery.minPrice as string);
+    }
+
+    if (searchQuery && searchQuery.maxPrice) {
+        params.set("maxPrice", searchQuery.maxPrice as string);
+    }
+
+    if (searchQuery && searchQuery.page) {
+        params.set("page", searchQuery.page as string);
+    }
+
 
 
 

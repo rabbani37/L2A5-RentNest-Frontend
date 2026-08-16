@@ -42,6 +42,8 @@ export default function PropertyFilters() {
             else {
                 params.delete("title")
             }
+
+            params.set("page", "1");
             router.replace(`${pathname}?${params.toString()}`)
         }, 500);
 
@@ -49,9 +51,53 @@ export default function PropertyFilters() {
 
 
     const handleFilters = (event: React.FormEvent<HTMLFormElement>) => {
-        // event.preventDefault()
-        console.log("event.currentTarget");
-    }
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const params = new URLSearchParams(searchParamsHook.toString());
+
+
+        const type = formData.get("type") as string;
+        const city = formData.get("city") as string;
+        const location = formData.get("location") as string;
+        const minPrice = formData.get("minPrice") as string;
+        const maxPrice = formData.get("maxPrice") as string;
+
+
+
+        if (type) {
+            params.set("type", type);
+        } else {
+            params.delete("type");
+        }
+
+        if (city) {
+            params.set("city", city);
+        } else {
+            params.delete("city");
+        }
+
+        if (location) {
+            params.set("location", location);
+        } else {
+            params.delete("location");
+        }
+
+        if (minPrice) {
+            params.set("minPrice", minPrice);
+        } else {
+            params.delete("minPrice");
+        }
+
+        if (maxPrice) {
+            params.set("maxPrice", maxPrice);
+        } else {
+            params.delete("maxPrice");
+        }
+
+        params.set("page", "1");
+        router.replace(`${pathname}?${params.toString()}`);
+    };
 
 
 
@@ -63,9 +109,6 @@ export default function PropertyFilters() {
             }
         }
     }, [])
-
-
-
 
 
 
@@ -121,6 +164,7 @@ export default function PropertyFilters() {
                         </SelectTrigger>
 
                         <SelectContent  >
+                            <SelectItem value="">All</SelectItem>
                             <SelectItem value="apartment">Apartment</SelectItem>
                             <SelectItem value="house">House</SelectItem>
                             <SelectItem value="studio">Studio</SelectItem>
@@ -135,6 +179,7 @@ export default function PropertyFilters() {
                         </SelectTrigger>
 
                         <SelectContent>
+                            <SelectItem value="">All</SelectItem>
                             <SelectItem value="dhaka">Dhaka</SelectItem>
                             <SelectItem value="chittagong">Chittagong</SelectItem>
                             <SelectItem value="khulna">Khulna</SelectItem>

@@ -50,7 +50,7 @@ export const PropertyRecords = ({
         <section>
 
             {/* Results Header */}
-            <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+            <div className="mb-17 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
                 <div>
                     <h2 className="text-xl font-semibold">
                         Available Properties
@@ -65,12 +65,12 @@ export const PropertyRecords = ({
 
 
 
-            <div className="grid md:grid-cols-2  gap-3">
+            <div className="grid lg:grid-cols-2  gap-3 ">
                 {properties.map((property: IAllProperty) => (
                     // console.log(property),
                     <Card
                         key={property.id}
-                        className="group overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                        className="group  w-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                     >
 
 

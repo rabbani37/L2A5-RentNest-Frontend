@@ -12,8 +12,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useActionState, useEffect, useRef, useState } from "react";
-import { getProperties } from "../_actionProperties/getProperties";
+import { useEffect, useRef, useState } from "react";
+
 
 export default function PropertyFilters() {
 
@@ -42,11 +42,19 @@ export default function PropertyFilters() {
             else {
                 params.delete("title")
             }
-
             router.replace(`${pathname}?${params.toString()}`)
         }, 500);
 
     }
+
+
+    const handleFilters = (event: React.FormEvent<HTMLFormElement>) => {
+        // event.preventDefault()
+        console.log("event.currentTarget");
+    }
+
+
+
 
     useEffect(() => {
         return () => {
@@ -59,7 +67,6 @@ export default function PropertyFilters() {
 
 
 
-    const [state, actions, pending] = useActionState(getProperties, false);
 
 
 
@@ -106,28 +113,24 @@ export default function PropertyFilters() {
                     </Button>
                 </div>
 
-
-
                 {/* Filters */}
-
-                {/* Category */}
-                <form action={actions} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    <Select>
-                        <SelectTrigger className="h-12 w-full">
+                <form onSubmit={handleFilters} className="mt-5  space-y-5">
+                    <Select name="type">
+                        <SelectTrigger className="h-12 w-full p-5">
                             <SelectValue placeholder="Property Category" />
                         </SelectTrigger>
 
-                        <SelectContent >
+                        <SelectContent  >
                             <SelectItem value="apartment">Apartment</SelectItem>
                             <SelectItem value="house">House</SelectItem>
                             <SelectItem value="studio">Studio</SelectItem>
-                            <SelectItem value="room">Room</SelectItem>
+                            <SelectItem value="duplex">Room</SelectItem>
                         </SelectContent>
                     </Select>
 
                     {/* City */}
-                    <Select>
-                        <SelectTrigger className="h-12 w-full">
+                    <Select name="city">
+                        <SelectTrigger className="h-12 p-5 w-full">
                             <SelectValue placeholder="City" />
                         </SelectTrigger>
 
@@ -168,10 +171,12 @@ export default function PropertyFilters() {
                     />
 
                     {/* Apply Button */}
-                    <Button className="h-12 gap-2">
+
+                    <Button type="submit" className="h-12 gap-2 w-full ">
                         <Search className="size-4" />
-                        Apply Filters
+                        {"  Apply Filters"}
                     </Button>
+
                 </form>
 
             </div>

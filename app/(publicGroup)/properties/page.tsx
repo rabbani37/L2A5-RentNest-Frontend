@@ -1,6 +1,7 @@
 
 import { getProperties } from "./_actionProperties/getProperties";
 import PropertyFilters from "./_components/PropertyFilters";
+import PropertyPagination from "./_components/PropertyPagination";
 import { PropertyRecords } from "./_components/PropertyRecords";
 
 
@@ -23,7 +24,7 @@ export default async function PropertiesPage({
           HEADER
       ====================================================== */}
       <section className="border-b bg-muted/30">
-        <div className=" max-w-7xl px-4 py-12 sm:px-6 lg:px-8 grid grid-cols-2">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">
               RentNest Properties
@@ -39,7 +40,7 @@ export default async function PropertiesPage({
             </p>
           </div>
 
-          
+
         </div>
       </section>
 
@@ -48,21 +49,29 @@ export default async function PropertiesPage({
       ====================================================== */}
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         {/* Filters */}
-        <div className="">
+        <div className="grid gap-8 md:grid-cols-10 ">
 
-          <PropertyFilters />
+          <div className="md:col-span-3  ">
+            <div className="sticky top-0 z-10">
+              <PropertyFilters />
+            </div>
+          </div>
 
 
           {/* Records */}
-          <div className="mt-10 ">
+          <div className="md:col-span-7  "  >
             <PropertyRecords properties={properties} />
+
+
+            {/* Pagination */}
+            <div className="mt-12">
+              <PropertyPagination currentPage={10} totalPages={3} />
+            </div>
           </div>
+
         </div>
 
-        {/* Pagination */}
-        <div className="mt-12">
-          {/* <PropertyPagination /> */}
-        </div>
+
       </section>
     </main>
   );

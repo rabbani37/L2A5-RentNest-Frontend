@@ -8,11 +8,13 @@ export const getProperties = async ({ searchQuery }: {
 }) => {
 
     // const searchTerm = `${searchQuery?.title ? `?title=${searchQuery.title}` : ""}`
-
     const params = new URLSearchParams();
     if (searchQuery && searchQuery.title) {
         params.set("title", searchQuery.title as string)
     }
+
+  
+
 
 
     const res = await fetch(`${process.env.BACKEND_API_URL}/api/properties?${params.toString()}`, {

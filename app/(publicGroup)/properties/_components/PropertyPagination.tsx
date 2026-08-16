@@ -1,80 +1,131 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import {
+    ChevronLeft,
+    ChevronRight,
+} from "lucide-react";
 
 interface PropertyPaginationProps {
-  currentPage: number;
-  totalPages: number;
+    currentPage: number;
+    totalPages: number;
 }
 
-export default function PropertyPagination({
-  currentPage,
-  totalPages,
-}: PropertyPaginationProps) {
-  const pages = Array.from(
-    { length: totalPages },
-    (_, index) => index + 1
-  );
+const PropertyPagination = ({
+    currentPage,
+    totalPages,
+}: PropertyPaginationProps) => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
-  const handlePageChange = (page: number) => {
-    console.log("Go to page:", page);
-  };
+    const handlePageChange = (page: number) => {
+        if (page < 1 || page > totalPages) return;
 
-  return (
-    <div className="flex flex-col items-center justify-between gap-4 border-t pt-6 sm:flex-row">
-      {/* Result info */}
-      <p className="text-sm text-muted-foreground">
-        Page{" "}
-        <span className="font-medium text-foreground">
-          {currentPage}
-        </span>{" "}
-        of{" "}
-        <span className="font-medium text-foreground">
-          {totalPages}
-        </span>
-      </p>
+        const params = new URLSearchParams(searchParams.toString());
 
-      {/* Pagination */}
-      <div className="flex items-center gap-1">
-        {/* Previous */}
-        <Button
-          type="button"
-          variant="outline"
-          size="icon"
-          disabled={currentPage === 1}
-          onClick={() => handlePageChange(currentPage - 1)}
-          className="size-9"
-        >
-          <ChevronLeft className="size-4" />
-        </Button>
+        params.set("page", page.toString());
 
-        {/* Page numbers */}
-        {pages.map((page) => (
-          <Button
-            key={page}
-            type="button"
-            variant={page === currentPage ? "default" : "outline"}
-            size="icon"
-            onClick={() => handlePageChange(page)}
-            className="size-9"
-          >
-            {page}
-          </Button>
-        ))}
+        router.push(`${pathname}?${params.toString()}`);
+    };
 
-        {/* Next */}
-        <Button
-          type="button"
-          variant="outline"
-          size="icon"
-          disabled={currentPage === totalPages}
-          onClick={() => handlePageChange(currentPage + 1)}
-          className="size-9"
-        >
-          <ChevronRight className="size-4" />
-        </Button>
-      </div>
-    </div>
-  );
-}
+    if (totalPages <= 1) {
+        return null;
+    }
+
+    const getPages = () => {
+        if (totalPages <= 5) {
+            return Array.from(
+                { length: totalPages },
+                (_, index) => index + 1
+            );
+        }
+
+        if (currentPage <= 3) {
+            return [1, 2, 3, "...", totalPages];
+        }
+
+        if (currentPage >= totalPages - 2) {
+            return [
+                1,
+                "...",
+                totalPages - 2,
+                totalPages - 1,
+                totalPages,
+            ];
+        }
+
+        return [
+            1,
+            "...",
+            currentPage - 1,
+            currentPage,
+            currentPage + 1,
+            "...",
+            totalPages,
+        ];
+    };
+
+    const pages = getPages();
+
+    return (
+        <div className="flex items-center justify-center gap-2">
+
+            {/* Previous */}
+            <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage === 1}
+                onClick={() => handlePageChange(currentPage - 1)}
+                className="gap-1"
+            >
+                <ChevronLeft className="size-4" />
+                Previous
+            </Button>
+
+            {/* Page Numbers */}
+            {pages.map((page, index) => {
+                if (page === "...") {
+                    return (
+                        <span
+                            key={`dots-${index}`}
+                            className="px-2 text-muted-foreground"
+                        >
+                            ...
+                        </span>
+                    );
+                }
+
+                return (
+                    <Button
+                        key={page}
+                        size="sm"
+                        variant={
+                            currentPage === page
+                                ? "default"
+                                : "outline"
+                        }
+                        onClick={() => handlePageChange(page as number)}
+                    >
+                        {page}
+                    </Button>
+                );
+            })}
+
+            {/* Next */}
+            <Button
+                variant="outline"
+                size="sm"
+                disabled={currentPage === totalPages}
+                onClick={() => handlePageChange(currentPage + 1)}
+                className="gap-1"
+            >
+                Next
+                <ChevronRight className="size-4" />
+            </Button>
+        </div>
+    );
+};
+
+export default PropertyPagination;

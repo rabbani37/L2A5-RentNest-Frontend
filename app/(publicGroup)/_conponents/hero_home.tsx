@@ -19,17 +19,6 @@ const Hero_Home = () => {
   const searchValue = searchParams.get("title") as string
 
 
-  const handleSearch = (value: string) => {
-    const titleValue = value
-
-
-    console.log(titleValue);
-
-
-
-  }
-
-
 
   return (
     <section className="relative overflow-hidden border-b">

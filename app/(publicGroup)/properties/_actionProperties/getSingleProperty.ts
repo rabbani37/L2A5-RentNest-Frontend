@@ -18,6 +18,5 @@ export const getSingleProperty = async (id: string) => {
 
     const result = await res.json();
 
-    // console.log("getSingleProperty:", result);
     return result.data;
 }

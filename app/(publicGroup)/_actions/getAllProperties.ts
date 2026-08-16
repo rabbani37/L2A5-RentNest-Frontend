@@ -17,6 +17,5 @@ export const getAllProperties = async () => {
     const result = await res.json()
 
 
-    // console.log("From actions_ ", result.data);
     return result.data;
 }

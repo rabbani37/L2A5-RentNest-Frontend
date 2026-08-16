@@ -29,6 +29,5 @@ export const getMe = async () => {
     });
 
     const result = await res.json();
-    // console.log("From getMe: ", result);
     return result;
 }

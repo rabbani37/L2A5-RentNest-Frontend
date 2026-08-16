@@ -13,7 +13,6 @@ export const getPropertyCategories = async () => {
 
     const result = await res.json()
 
-    // console.log("getPropertyCategories", result);
     return result.data;
 
 }

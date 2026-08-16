@@ -1,12 +1,11 @@
 
-import { IPropertiesCardProps } from "@/components/shared/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Bath, BedDouble, MapPin, Maximize, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { IAllProperty } from "../../_conponents/FeaturedProperties";
 import { Badge } from "@/components/ui/badge";
+import { IAllProperty, IPropertiesCardProps } from "@/lib/type";
 
 
 
@@ -14,7 +13,6 @@ import { Badge } from "@/components/ui/badge";
 export const PropertyRecords = ({
     properties,
 }: IPropertiesCardProps) => {
-
 
 
 
@@ -67,7 +65,6 @@ export const PropertyRecords = ({
 
             <div className="grid lg:grid-cols-2  gap-3 ">
                 {properties.map((property: IAllProperty) => (
-                    // console.log(property),
                     <Card
                         key={property.id}
                         className="group  w-full overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"

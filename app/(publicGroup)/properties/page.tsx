@@ -17,7 +17,6 @@ export default async function PropertiesPage({
   const properties = await getProperties({ searchQuery });
 
 
-
   return (
     <main className="min-h-screen bg-background">
       {/* =====================================================
@@ -60,12 +59,12 @@ export default async function PropertiesPage({
 
           {/* Records */}
           <div className="md:col-span-7  "  >
-            <PropertyRecords properties={properties} />
+            <PropertyRecords properties={properties.data} />
 
 
             {/* Pagination */}
             <div className="mt-12">
-              <PropertyPagination currentPage={10} totalPages={3} />
+              <PropertyPagination currentPage={properties.meta.page} totalPages={properties.meta.totalPages} />
             </div>
           </div>
 

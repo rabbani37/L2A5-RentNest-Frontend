@@ -43,15 +43,9 @@ export const getProperties = async ({ searchQuery }: {
         method: "GET",
         headers: {
             "content-type": "application/json",
-        },
-        cache: "force-cache",
-        next: {
-            revalidate: 60 * 60 * 6,
-            tags: ['main-property']
         }
     });
 
     const result = await res.json()
-
     return result.data;
 }

@@ -40,13 +40,12 @@ export function NavBar({ user }: NavbarProps) {
     };
 
 
-     const roleBaseUrl = user.data.role === "LANDLORD" ? "/landlord-dashboard" : user.data.role === "ADMIN" ? "/admin-dashboard" : "/dashboard"
-
+     const roleBaseUrl = user.data.role === "LANDLORD" ? "/landlord-dashboard" : user.data.role === "ADMIN" ? "/admin-dashboard" : "/dashboard";
 
     const navItems = [
         { label: "Home", href: "/" },
         { label: "Dashboard", href: roleBaseUrl },
-        { label: "Properties", href: "/properties" },
+        { label: "Properties", href: "/properties" }
     ] as const
 
     return (

@@ -1,38 +1,53 @@
+import { RequestStatsProps } from "@/lib/rentalsTypes";
 import {
-    Bookmark,
     CalendarDays,
+    CheckCircle2,
     Clock3,
     Home,
 } from "lucide-react";
 
-const stats = [
-    {
-        title: "Total Bookings",
-        value: "12",
-        description: "All time bookings",
-        icon: CalendarDays,
-    },
-    {
-        title: "Pending Requests",
-        value: "03",
-        description: "Waiting for approval",
-        icon: Clock3,
-    },
-    {
-        title: "Saved Properties",
-        value: "08",
-        description: "Properties you liked",
-        icon: Bookmark,
-    },
-    {
-        title: "Active Rentals",
-        value: "02",
-        description: "Currently rented",
-        icon: Home,
-    },
-];
 
-export default function TenantStats() {
+
+export default function TenantStats({ rentals }: RequestStatsProps) {
+
+    const totalRequests = rentals.length;
+
+    const pendingRequests = rentals.filter((rental) => rental.status === "PENDING").length;
+
+    const approvedRequests = rentals.filter((rental) => rental.status === "APPROVED").length;
+
+    const completedRentals = rentals.filter((rental) => rental.status === "COMPLETED").length;
+
+
+    const stats = [
+        {
+            title: "Total Requests",
+            value: totalRequests,
+            description: "All rental requests",
+            icon: CalendarDays,
+        },
+        {
+            title: "Pending Requests",
+            value: pendingRequests,
+            description: "Waiting for approval",
+            icon: Clock3,
+        },
+        {
+            title: "Approved Requests",
+            value: approvedRequests,
+            description: "Approved by landlord",
+            icon: CheckCircle2,
+        },
+        {
+            title: "Completed Rentals",
+            value: completedRentals,
+            description: "Completed rentals",
+            icon: Home,
+        },
+    ];
+
+
+
     return (
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {stats.map((stat) => {

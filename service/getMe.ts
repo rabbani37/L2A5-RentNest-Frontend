@@ -19,7 +19,6 @@ export const getMe = cache(async () => {
     const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/me`, {
         method: "GET",
         headers: {
-            // authorization: `Bearer ${accessToken}`,
             cookie: `accessToken=${accessToken}`,
             "content-type": "application/json"
         },

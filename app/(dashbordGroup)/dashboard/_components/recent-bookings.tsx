@@ -2,11 +2,12 @@ import Link from "next/link";
 
 import {
     ArrowUpRight,
-    CalendarDays,
+    BookOpen,
     MapPin,
 } from "lucide-react";
 
 import BookingStatus from "./booking-status";
+import { RequestStatsProps } from "@/lib/rentalsTypes";
 
 const bookings = [
     {
@@ -35,14 +36,20 @@ const bookings = [
     },
 ];
 
-export default function RecentBookings() {
+export default function RecentBookings({ rentals }: RequestStatsProps) {
+
+
+
+    const bookings = rentals
+
+
     return (
         <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
             {/* Header */}
             <div className="flex items-center justify-between border-b px-5 py-5 sm:px-6">
                 <div>
                     <h2 className="font-semibold text-foreground">
-                        Recent Bookings
+                        Recent 2 Requests
                     </h2>
 
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -88,28 +95,32 @@ export default function RecentBookings() {
                     </thead>
 
                     <tbody className="divide-y">
-                        {bookings.map((booking) => (
+                        {bookings.sort(
+                            (a, b) =>
+                                new Date(b.createdAt).getTime() -
+                                new Date(a.createdAt).getTime()
+                        ).slice(0, 2).map((booking) => (
                             <tr
                                 key={booking.id}
                                 className="transition hover:bg-muted/30"
                             >
                                 <td className="px-6 py-4">
                                     <p className="font-medium text-foreground">
-                                        {booking.property}
+                                        {booking.property.title}
                                     </p>
 
                                     <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                                         <MapPin className="size-3.5" />
-                                        {booking.location}
+                                        {booking.property.location}
                                     </p>
                                 </td>
 
                                 <td className="whitespace-nowrap px-6 py-4 text-sm text-muted-foreground">
-                                    {booking.date}
+                                    {new Date(booking.createdAt).toLocaleDateString()}
                                 </td>
 
                                 <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-foreground">
-                                    {booking.amount}
+                                    {booking.property.price}
                                 </td>
 
                                 <td className="px-6 py-4">
@@ -125,7 +136,11 @@ export default function RecentBookings() {
 
             {/* Mobile */}
             <div className="divide-y md:hidden">
-                {bookings.map((booking) => (
+                {bookings.sort(
+                    (a, b) =>
+                        new Date(b.createdAt).getTime() -
+                        new Date(a.createdAt).getTime()
+                ).slice(0, 2).map((booking) => (
                     <div
                         key={booking.id}
                         className="p-5"
@@ -133,12 +148,12 @@ export default function RecentBookings() {
                         <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
                                 <h3 className="truncate font-medium text-foreground">
-                                    {booking.property}
+                                    {booking.property.title}
                                 </h3>
 
                                 <p className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
                                     <MapPin className="size-3.5" />
-                                    {booking.location}
+                                    {booking.property.location}
                                 </p>
                             </div>
 
@@ -149,11 +164,11 @@ export default function RecentBookings() {
 
                         <div className="mt-4 flex items-center justify-between text-sm">
                             <span className="text-muted-foreground">
-                                {booking.date}
+                                {booking.createdAt}
                             </span>
 
                             <span className="font-semibold text-foreground">
-                                {booking.amount}
+                                {booking.property.price}
                             </span>
                         </div>
                     </div>

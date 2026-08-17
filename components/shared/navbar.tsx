@@ -24,11 +24,6 @@ import { toast } from "sonner"
 import { NavbarProps } from "@/lib/type"
 
 
-const navItems = [
-    { label: "Home", href: "/" },
-    { label: "Dashboard", href: "/dashboard" },
-    { label: "Properties", href: "/properties" },
-] as const
 
 // const accountItems = [
 //     { label: "Profile", href: "/profile", icon: UserIcon },
@@ -44,6 +39,15 @@ export function NavBar({ user }: NavbarProps) {
         await LoggOut();
     };
 
+
+     const roleBaseUrl = user.data.role === "LANDLORD" ? "/landlord-dashboard" : user.data.role === "ADMIN" ? "/admin-dashboard" : "/dashboard"
+
+
+    const navItems = [
+        { label: "Home", href: "/" },
+        { label: "Dashboard", href: roleBaseUrl },
+        { label: "Properties", href: "/properties" },
+    ] as const
 
     return (
         <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/70">

@@ -14,7 +14,7 @@ import { IPropertiesCardProps, IProperty } from '@/lib/type';
 
 const PropertyCard = ({ properties }: IPropertiesCardProps) => {
 
-    console.log("PropertyCard.......,", properties);
+    // console.log("PropertyCard.......,", properties);
 
 
     return (

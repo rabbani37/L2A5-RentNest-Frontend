@@ -2,13 +2,9 @@
 
 
 import {
-    BellIcon,
     ChevronDownIcon,
-    CreditCardIcon,
     Home,
-    LogOutIcon,
-    SettingsIcon,
-    UserIcon,
+    LogOutIcon
 } from "lucide-react"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -23,9 +19,9 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
-import { LogOut } from "@/service/logOut"
+import { LoggOut } from "@/service/logOut"
 import { toast } from "sonner"
-import { useEffect, useState } from "react"
+import { NavbarProps } from "@/lib/type"
 
 
 const navItems = [
@@ -36,45 +32,17 @@ const navItems = [
 
 // const accountItems = [
 //     { label: "Profile", href: "/profile", icon: UserIcon },
-    // { label: "Billing", href: "/abcd", icon: CreditCardIcon },
-    // { label: "Notifications", href: "/abcde", icon: BellIcon },
+// { label: "Billing", href: "/abcd", icon: CreditCardIcon },
+// { label: "Notifications", href: "/abcde", icon: BellIcon },
 // ] as const
 
 
-type TUser = {
-    success: boolean,
-    statusCode: number,
-    message: string,
-    data: {
-        id: string,
-        name: string,
-        email: string;
-        role: string;
-        phone: string;
-        status: string;
-        createdAt: string;
-        updatedAt: string;
-    }
-}
-
-type NavbarProps = {
-    user: TUser
-};
-
 export function NavBar({ user }: NavbarProps) {
 
-    const [isLoggout, setIsLoggout] = useState(false)
-
     const handleSignOut = async () => {
-        await LogOut()
-        setIsLoggout(true)
-    }
-
-    useEffect(() => {
-        if (isLoggout) {
-            toast.success("User Logged out Successfully")
-        }
-    }, [isLoggout])
+        toast.success("User logged out successfully");
+        await LoggOut();
+    };
 
 
     return (
@@ -144,7 +112,7 @@ export function NavBar({ user }: NavbarProps) {
                                         {user?.data?.email || "No Email"}
                                     </span>
                                 </DropdownMenuLabel>
-                                
+
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
                             {/* <DropdownMenuItem >

@@ -14,7 +14,7 @@ const AuthGroupLayout = async ({ children, }: { children: React.ReactNode }) => 
 
             {children}
 
-
+  <Footer />
         </div>
     )
 }

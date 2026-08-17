@@ -1,3 +1,26 @@
+
+
+export type TUser = {
+    success: boolean,
+    statusCode: number,
+    message: string,
+    data: {
+        id: string,
+        name: string,
+        email: string;
+        role: string;
+        phone: string;
+        status: string;
+        createdAt: string;
+        updatedAt: string;
+    }
+}
+
+export type NavbarProps = {
+    user: TUser
+};
+
+
 export type IProperty = {
     id: string;
     title: string;

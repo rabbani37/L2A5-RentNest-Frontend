@@ -1,8 +1,9 @@
 "use server"
 
 import { cookies } from "next/headers";
+import { cache } from "react";
 
-export const getMe = async () => {
+export const getMe = cache(async () => {
 
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
@@ -10,7 +11,8 @@ export const getMe = async () => {
     if (!accessToken) {
         return {
             success: false,
-            message: "User is not logged in"
+            message: "User is not logged in",
+            data:null
         }
     }
 
@@ -21,13 +23,9 @@ export const getMe = async () => {
             cookie: `accessToken=${accessToken}`,
             "content-type": "application/json"
         },
-        cache: "force-cache",
-        next: {
-            revalidate: 60 * 60 * 24,
-            tags: ["my-user"]
-        }
+        cache: "no-cache",
     });
 
     const result = await res.json();
     return result;
-}
+})

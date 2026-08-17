@@ -160,7 +160,7 @@ export default function PropertyFilters() {
                         onClick={handleReset}
                         variant="secondary"
                         size="sm"
-                        className="w-fit gap-2 text-muted-foreground hover:text-primary"
+                        className="w-fit gap-2 font-semibold  hover:text-primary"
                     >
                         <RotateCcw className="size-4 " />
                         Reset

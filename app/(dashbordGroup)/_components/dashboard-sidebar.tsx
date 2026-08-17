@@ -63,7 +63,7 @@ export default function DashboardSidebar({ user }: NavbarProps) {
             collapsible="icon"
             variant="sidebar"
             side="left"
-            className="top-16 h-[calc(100svh-4rem)]"
+            className="top-0 h-[calc(100svh-4rem)]"
         >
             {/* Header */}
             <SidebarHeader className="border-b">
@@ -192,16 +192,26 @@ export default function DashboardSidebar({ user }: NavbarProps) {
             <SidebarFooter className="border-t">
                 <SidebarMenu>
                     <SidebarMenuItem>
+                        <div className="mb-3">
+                            <Link
+                                href="/"
+                                className="inline-flex h-10 items-center gap-2 rounded-md border bg-background px-4 text-sm font-medium transition-colors hover:border-primary hover:text-primary w-full"
+                            >
+                                <ArrowLeft className="size-4" />
+                                Back to Home
+                            </Link>
+                        </div>
                         <SidebarMenuButton
-                            variant={"default"}
+                        
                             onClick={handleLogout}
                             tooltip="Logout"
-                            className="text-destructive hover:text-destructive font-semibold"
+                            className="text-destructive hover:text-destructive items-center gap-2 font-semibold inline-flex h-10  rounded-md border bg-background hover:border-red-500 text-sm  transition-colors  px-4"
                         >
                             <LogOut />
 
                             <span>Logout</span>
                         </SidebarMenuButton>
+
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarFooter>

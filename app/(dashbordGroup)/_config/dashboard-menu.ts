@@ -3,10 +3,9 @@ import {
     Building2,
     CalendarDays,
     CreditCard,
-    FileText,
-    Home,
     LayoutDashboard,
-    Settings,
+    MessageSquare,
+    Tags,
     User,
     Users,
 } from "lucide-react";
@@ -14,6 +13,9 @@ import {
 export type DashboardRole = "TENANT" | "LANDLORD" | "ADMIN";
 
 export const dashboardMenus = {
+    // =========================
+    // TENANT
+    // =========================
     TENANT: [
         {
             title: "Overview",
@@ -21,14 +23,9 @@ export const dashboardMenus = {
             icon: LayoutDashboard,
         },
         {
-            title: "My Bookings",
-            href: "/dashboard/bookings",
+            title: "Rental Requests",
+            href: "/dashboard/rental-requests",
             icon: CalendarDays,
-        },
-        {
-            title: "Saved Properties",
-            href: "/dashboard/saved-properties",
-            icon: Bookmark,
         },
         {
             title: "Payments",
@@ -36,17 +33,25 @@ export const dashboardMenus = {
             icon: CreditCard,
         },
         {
+            title: "Saved Properties",
+            href: "/dashboard/saved-properties",
+            icon: Bookmark,
+        },
+        {
+            title: "Reviews",
+            href: "/dashboard/reviews",
+            icon: MessageSquare,
+        },
+        {
             title: "Profile",
             href: "/dashboard/profile",
             icon: User,
         },
-        {
-            title: "Settings",
-            href: "/dashboard/settings",
-            icon: Settings,
-        },
     ],
 
+    // =========================
+    // LANDLORD
+    // =========================
     LANDLORD: [
         {
             title: "Overview",
@@ -59,32 +64,30 @@ export const dashboardMenus = {
             icon: Building2,
         },
         {
-            title: "Add Property",
-            href: "/landlord-dashboard/properties/new",
-            icon: Home,
-        },
-        {
-            title: "Booking Requests",
-            href: "/landlord-dashboard/requests",
+            title: "Rental Requests",
+            href: "/landlord-dashboard/rental-requests",
             icon: CalendarDays,
         },
         {
-            title: "Payments",
-            href: "/landlord-dashboard/payments",
-            icon: CreditCard,
+            title: "Rental History",
+            href: "/landlord-dashboard/rental-history",
+            icon: CalendarDays,
+        },
+        {
+            title: "Reviews",
+            href: "/landlord-dashboard/reviews",
+            icon: MessageSquare,
         },
         {
             title: "Profile",
             href: "/landlord-dashboard/profile",
             icon: User,
         },
-        {
-            title: "Settings",
-            href: "/landlord-dashboard/settings",
-            icon: Settings,
-        },
     ],
 
+    // =========================
+    // ADMIN
+    // =========================
     ADMIN: [
         {
             title: "Overview",
@@ -102,29 +105,26 @@ export const dashboardMenus = {
             icon: Building2,
         },
         {
-            title: "Bookings",
-            href: "/admin-dashboard/bookings",
+            title: "Rental Requests",
+            href: "/admin-dashboard/rental-requests",
             icon: CalendarDays,
         },
         {
-            title: "Payments",
-            href: "/admin-dashboard/payments",
-            icon: CreditCard,
-        },
-        {
-            title: "Reports",
-            href: "/admin-dashboard/reports",
-            icon: FileText,
+            title: "Categories",
+            href: "/admin-dashboard/categories",
+            icon: Tags,
         },
         {
             title: "Profile",
             href: "/admin-dashboard/profile",
             icon: User,
         },
-        {
-            title: "Settings",
-            href: "/admin-dashboard/settings",
-            icon: Settings,
-        },
     ],
-};
+} satisfies Record<
+    DashboardRole,
+    {
+        title: string;
+        href: string;
+        icon: React.ElementType;
+    }[]
+>;

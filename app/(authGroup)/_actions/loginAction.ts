@@ -35,13 +35,15 @@ export const loginAction = async (prevState: LoginActionState, formData: FormDat
         cookieStore.set("accessToken", result.data?.accessToken || "", {
             httpOnly: true,
             secure: true,
-            sameSite: "none",
+            sameSite: "lax",
+            path:"/",
             maxAge: 60 * 60 * 24, // 1 days
         });
         cookieStore.set("refreshToken", result.data?.refreshToken || "", {
             httpOnly: true,
             secure: true,
-            sameSite: "none",
+            sameSite: "lax",
+            path:"/",
             maxAge: 60 * 60 * 24 * 7, // 7 days
         });
 
@@ -50,12 +52,12 @@ export const loginAction = async (prevState: LoginActionState, formData: FormDat
         const decodeToken = jwt.decode(result.data?.accessToken) as JwtPayload
         // redirect to dashboard base on User Role
         if (decodeToken.role === "ADMIN") {
-            redirect("admin-dashboard")
+            redirect("/admin-dashboard")
         } else if (decodeToken.role === "LANDLORD") {
-            redirect("landlord-dashboard")
+            redirect("/landlord-dashboard")
         }
         else if (decodeToken.role === "TENANT") {
-            redirect("dashboard")
+            redirect("/dashboard")
         }
 
 

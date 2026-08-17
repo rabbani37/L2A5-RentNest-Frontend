@@ -23,7 +23,7 @@ export const getMe = cache(async () => {
             cookie: `accessToken=${accessToken}`,
             "content-type": "application/json"
         },
-        cache: "no-cache",
+        cache: "no-store",
     });
 
     const result = await res.json();

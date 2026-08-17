@@ -6,7 +6,6 @@ import { verifyTokenFunc } from './utility/jwt'
 
 const AUTH_ROUTES = ["/login", "/register"]
 const PUBLIC_ROUTES = ["/", "/properties"]
-const DASHBOARD_ROUTE = ["dashboard", "landlord-dashboard", "admin-dashboard"]
 
 // This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {

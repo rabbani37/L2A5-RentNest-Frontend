@@ -1,8 +1,8 @@
 import { getMe } from "@/service/getMe";
 
-import TenantWelcome from "./_components/tenant-welcome";
-import TenantStats from "./_components/tenant-stats";
-import RecentBookings from "./_components/recent-bookings";
+import TenantWelcome from "./_components/request/tenant-welcome";
+import TenantStats from "./_components/request/tenant-stats";
+import RecentBookings from "./_components/request/recent-bookings";
 import { getMyRentalRequests } from "@/service/request/getRequest";
 
 export default async function TenantDashboardPage() {

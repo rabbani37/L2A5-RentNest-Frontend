@@ -46,8 +46,9 @@ export interface RequestStatsProps {
 
 export type RentalRequestStatus = | "PENDING" | "APPROVED" | "REJECTED" | "ACTIVE" | "COMPLETED";
 
-
 export interface RequestToRentDialogProps {
     propertyId: string;
     isAuthenticated: boolean;
 }
+
+

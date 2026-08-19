@@ -9,6 +9,8 @@ import {
     LogOut,
     User,
     ArrowLeft,
+    Backpack,
+    HomeIcon,
 } from "lucide-react";
 
 import {
@@ -189,20 +191,25 @@ export default function DashboardSidebar({ user }: NavbarProps) {
             </SidebarContent>
 
             {/* Footer */}
-            <SidebarFooter className="border-t">
+            <SidebarFooter className="border-t border-b">
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <div className="mb-3">
-                            <Link
-                                href="/"
-                                className="inline-flex h-10 items-center gap-2 rounded-md border bg-background px-4 text-sm font-medium transition-colors hover:border-primary hover:text-primary w-full"
-                            >
-                                <ArrowLeft className="size-4" />
-                                Back to Home
-                            </Link>
-                        </div>
+                       
                         <SidebarMenuButton
-                        
+                            onClick={handleLogout}
+                            tooltip="Logout"
+                            className="mb-3  rounded-md border bg-background hover:border-primary text-sm  transition-colors  px-4"
+                        >
+                            <Link href="/"
+                            className="text-black  hover:text-primary items-center gap-2 font-semibold inline-flex h-10"
+                            >
+                                <HomeIcon className="size-4" />
+
+                                <span>Back To Home</span>
+                            </Link>
+
+                        </SidebarMenuButton>
+                        <SidebarMenuButton
                             onClick={handleLogout}
                             tooltip="Logout"
                             className="text-destructive hover:text-destructive items-center gap-2 font-semibold inline-flex h-10  rounded-md border bg-background hover:border-red-500 text-sm  transition-colors  px-4"

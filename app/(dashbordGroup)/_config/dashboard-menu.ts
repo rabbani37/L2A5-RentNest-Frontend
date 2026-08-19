@@ -33,16 +33,6 @@ export const dashboardMenus = {
             icon: CreditCard,
         },
         {
-            title: "Saved Properties",
-            href: "/dashboard/saved-properties",
-            icon: Bookmark,
-        },
-        {
-            title: "Reviews",
-            href: "/dashboard/reviews",
-            icon: MessageSquare,
-        },
-        {
             title: "Profile",
             href: "/dashboard/profile",
             icon: User,

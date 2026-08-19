@@ -89,6 +89,7 @@ function PaymentCard({
             <p className="max-w-52  font-mono text-xs overflow-auto">
               {payment.transactionId}
             </p>
+            
           </div>
         </div>
 
@@ -121,7 +122,7 @@ function PaymentCard({
         </div>
 
         {/* Date */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground lg:min-w-[130px]">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground lg:min-w-32.5">
           <CalendarDays className="size-4 shrink-0" />
 
           <div>

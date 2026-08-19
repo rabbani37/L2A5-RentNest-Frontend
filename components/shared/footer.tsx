@@ -61,14 +61,14 @@ export default function Footer() {
                     {/* Brand */}
                     <div>
                         <Link href="/" className="flex w-fit items-center gap-2">
-                           
+
 
                             <span className="flex justify-items-center gap-2">
-                        <Home className="size-6 text-primary " />
-                        <span className="text-xl font-bold">
-                                Rent<span className="text-primary">Nest</span>
+                                <Home className="size-6 text-primary " />
+                                <span className="text-xl font-bold">
+                                    Rent<span className="text-primary">Nest</span>
+                                </span>
                             </span>
-                    </span>
                         </Link>
 
                         <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">

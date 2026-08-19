@@ -32,7 +32,7 @@ export default function RecentBookings({ rentals }: RequestStatsProps) {
                 </div>
 
                 <Link
-                    href="/dashboard/bookings"
+                    href="/dashboard/rental-requests"
                     className="
                         flex items-center gap-1
                         text-sm font-medium

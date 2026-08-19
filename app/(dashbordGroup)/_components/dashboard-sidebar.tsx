@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
     Building2,
     ArrowRight,
     LogOut,
     User,
     ArrowLeft,
-    Backpack,
     HomeIcon,
 } from "lucide-react";
 
@@ -60,6 +64,9 @@ export default function DashboardSidebar({ user }: NavbarProps) {
         await LoggOut();
     }
 
+
+
+
     return (
         <Sidebar
             collapsible="icon"
@@ -70,9 +77,35 @@ export default function DashboardSidebar({ user }: NavbarProps) {
             {/* Header */}
             <SidebarHeader className="border-b">
                 <div className="relative flex h-16 items-center px-2">
+
+
+                    {/* Desktop Collapse Button */}
+                    {!isMobile && (
+                        <Button
+
+                            type="button"
+                            onClick={toggleSidebar}
+                            aria-label={
+                                isCollapsed
+                                    ? "Expand sidebar"
+                                    : "Collapse sidebar"
+                            }
+                            className="absolute -right-10  z-50
+                                        flex size-8 
+                                        items-center justify-center
+                                        border rounded"
+                        >
+                            {isCollapsed ? (
+                                <    ArrowRight
+                                    className="size-5" />
+                            ) : (
+                                <ArrowLeft className="size-5" />
+                            )}
+                        </Button>
+                    )}
                     <Link
                         href={roleBaseUrl}
-                        className="flex min-w-0 items-center gap-3"
+                        className="flex min-w-0 items-center gap-x-3"
                     >
                         {/* Logo */}
                         <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
@@ -93,115 +126,116 @@ export default function DashboardSidebar({ user }: NavbarProps) {
                         )}
                     </Link>
 
-                    {/* Desktop Collapse Button */}
-                    {!isMobile && (
-                        <Button
+                    
 
-                            type="button"
-                            onClick={toggleSidebar}
-                            aria-label={
-                                isCollapsed
-                                    ? "Expand sidebar"
-                                    : "Collapse sidebar"
-                            }
-                            className="absolute -right-10 top-2/6 z-50
-                                        flex size-8 -translate-y-1/2
-                                        items-center justify-center
-                                        border"
-                        >
-                            {isCollapsed ? (
-                                <    ArrowRight
-                                    className="size-5" />
-                            ) : (
-                                <ArrowLeft className="size-5" />
-                            )}
-                        </Button>
-                    )}
+                    
                 </div>
             </SidebarHeader>
 
             {/* User */}
-            <SidebarContent>
-                <SidebarGroup className="pt-5">
-                    <SidebarGroupLabel>
-                        Account
-                    </SidebarGroupLabel>
+            <TooltipProvider>
+                <SidebarContent>
+                    <SidebarGroup className="pt-4">
+                        <SidebarGroupLabel>
+                            Account
+                        </SidebarGroupLabel>
 
-                    <SidebarGroupContent>
-                        <div className="mb-4 px-2">
-                            <div className="flex items-center gap-3 rounded-xl bg-muted p-2.5">
-                                <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                                    <User className="size-4" />
-                                </div>
-
-                                {!isCollapsed && (
-                                    <div className="min-w-0">
-                                        <p className="truncate text-sm font-semibold text-foreground">
-                                            {user.data.name}
-                                        </p>
-
-                                        <p className="truncate text-xs text-muted-foreground">
-                                            {user.data.role.toLowerCase()}
-                                        </p>
+                        <SidebarGroupContent>
+                            <div className="mb-2 px-2">
+                                <div className="flex items-center gap-3 rounded-xl bg-muted p-2.5">
+                                    <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                                        <User className="size-4" />
                                     </div>
-                                )}
+
+                                    {!isCollapsed && (
+                                        <div className="min-w-0">
+                                            <p className="truncate text-sm font-semibold text-foreground">
+                                                {user.data.name}
+                                            </p>
+
+                                            <p className="truncate text-xs text-muted-foreground">
+                                                {user.data.role.toLowerCase()}
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    </SidebarGroupContent>
-                </SidebarGroup>
+                        </SidebarGroupContent>
+                    </SidebarGroup>
 
-                {/* Navigation */}
-                <SidebarGroup>
-                    <SidebarGroupLabel>
-                        {role === "ADMIN" ? "Administration" : role === "LANDLORD" ? "Properies Landlord" : "Tanent user"}
+                    {/* Navigation */}
+                    <SidebarGroup>
+                        <SidebarGroupLabel>
+                            {role === "ADMIN" ? "Administration" : role === "LANDLORD" ? "Properies Landlord" : "Tanent user"}
 
-                    </SidebarGroupLabel>
+                        </SidebarGroupLabel>
 
-                    <SidebarGroupContent>
-                        <SidebarMenu>
-                            {menuItems.map((item) => {
-                                const Icon = item.icon;
+                        <SidebarGroupContent>
+                            <SidebarMenu>
+                                {menuItems.map((item) => {
+                                    const Icon = item.icon;
 
-                                const isActive =
-                                    item.href === "/dashboard" ||
-                                        item.href === "/landlord-dashboard" ||
-                                        item.href === "/admin-dashboard"
-                                        ? pathname === item.href
-                                        : pathname.startsWith(item.href);
+                                    const isActive =
+                                        item.href === "/dashboard" ||
+                                            item.href === "/landlord-dashboard" ||
+                                            item.href === "/admin-dashboard"
+                                            ? pathname === item.href
+                                            : pathname.startsWith(item.href);
 
-                                return (
-                                    <SidebarMenuItem key={item.href}>
+                                    const menuButton = (
                                         <SidebarMenuButton
-                                            tooltip={item.title}
                                             isActive={isActive}
                                             className="my-1"
                                         >
-                                            <Link className="flex  gap-2 font-semibold" href={item.href}>
-                                                <Icon />
-
+                                            <Link
+                                                href={item.href}
+                                                className="flex w-full items-center gap-2 font-semibold"
+                                            >
+                                                <Icon className="size-4 shrink-0" />
                                                 <span>{item.title}</span>
                                             </Link>
                                         </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                );
-                            })}
-                        </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
-            </SidebarContent>
+                                    );
+
+                                    return (
+                                        <SidebarMenuItem key={item.href}>
+                                            {isCollapsed ? (
+                                                <Tooltip>
+                                                   
+                                                        {menuButton}
+
+                                                    <TooltipContent
+                                                        side="right"
+                                                        align="center"
+                                                        className="font-medium"
+                                                    >
+                                                        {item.title}
+                                                    </TooltipContent>
+                                                </Tooltip>
+                                            ) : (
+                                                menuButton
+                                            )}
+                                        </SidebarMenuItem>
+                                    );
+                                })}
+                            </SidebarMenu>
+                        </SidebarGroupContent>
+                    </SidebarGroup>
+                </SidebarContent>
+            </TooltipProvider>
 
             {/* Footer */}
             <SidebarFooter className="border-t border-b">
                 <SidebarMenu>
                     <SidebarMenuItem>
-                       
+
                         <SidebarMenuButton
                             onClick={handleLogout}
                             tooltip="Logout"
                             className="mb-3  rounded-md border bg-background hover:border-primary text-sm  transition-colors  px-4"
                         >
                             <Link href="/"
-                            className="text-black  hover:text-primary items-center gap-2 font-semibold inline-flex h-10"
+                                className="text-black  hover:text-primary items-center gap-2 font-semibold inline-flex h-10"
                             >
                                 <HomeIcon className="size-4" />
 

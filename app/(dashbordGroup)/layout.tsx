@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 import DashboardSidebar from "./_components/dashboard-sidebar";
 import { getMe } from "@/service/getMe";
+import { Home } from "lucide-react";
 
 interface DashboardLayoutProps {
     children: ReactNode;
@@ -15,27 +16,36 @@ export default async function DashboardLayout({
     const user = await getMe();
 
     return (
-        <div className="min-h-screen bg-background">
-            
+         <SidebarProvider>
+            <DashboardSidebar user={user} />
 
-            {/* Dashboard Area */}
-            <SidebarProvider
-                defaultOpen={true}
-                className="min-h-[calc(100svh-4rem)]"
-            >
-                <DashboardSidebar user={user} />
+            <div className="flex min-h-screen w-full flex-col">
+                
+                {/* Mobile Header */}
+                <header className="flex h-16 items-center border-b px-4 md:hidden">
+                    <SidebarTrigger />
+                    
+                    <h1 className="ml-3 font-semibold">
+                       <span className="flex justify-items-center gap-2">
+                                <Home className="size-6 text-primary " />
+                                <span className="text-xl font-bold">
+                                    Rent<span className="text-primary">Nest</span>
+                                </span>
+                            </span>
+                    </h1>
+                </header>
 
-                <SidebarInset>
-                    <main className="min-h-[calc(100svh-4rem)]">
-                        <div className="mx-auto w-full max-w-[1600px] p-4 sm:p-6 lg:p-8">
-                            {children}
-                        </div>
-                        
-                    </main>
-                </SidebarInset>
-            </SidebarProvider>
+                {/* Desktop Header যদি থাকে */}
+                <header className="hidden h-16 items-center border-b px-6 md:flex">
+                    <h1 className="font-semibold">
+                    </h1>
+                </header>
 
+                <main className="flex-1 p-4 md:p-6">
+                    {children}
+                </main>
 
-        </div>
+            </div>
+        </SidebarProvider>
     );
 }

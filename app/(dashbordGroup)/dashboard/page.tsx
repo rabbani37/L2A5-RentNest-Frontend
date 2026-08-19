@@ -3,7 +3,7 @@ import { getMe } from "@/service/getMe";
 import TenantWelcome from "./_components/tenant-welcome";
 import TenantStats from "./_components/tenant-stats";
 import RecentBookings from "./_components/recent-bookings";
-import { getMyRentalRequests } from "./_actions/dashboard.action";
+import { getMyRentalRequests } from "@/service/request/getRequest";
 
 export default async function TenantDashboardPage() {
   const user = await getMe();

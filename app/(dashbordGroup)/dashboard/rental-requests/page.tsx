@@ -2,8 +2,8 @@ import { CalendarDays, MapPin, MessageSquare, Home } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getMyRentalRequests } from "../_actions/dashboard.action";
 import { Button } from "@/components/ui/button";
+import { getMyRentalRequests } from "@/service/request/getRequest";
 
 
 
@@ -67,7 +67,7 @@ export default async function RentalRequestsPage() {
             : request.status === "REJECTED"
             ? "border-red-500/30 bg-red-500/10 text-red-600"
             : request.status === "COMPLETED"
-            ? "border-blue-500/30 bg-blue-500/10 text-blue-600"
+            ? "border-blue-500/30 bg-blue-500/10 text-gray-600"
             : "border-muted bg-muted text-muted-foreground"
     }
 >
@@ -98,7 +98,7 @@ export default async function RentalRequestsPage() {
                                         </span>
 
                                         <span className="font-medium">
-                                            ${request.property.price}
+                                            ৳ {request.property.price}
                                         </span>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@ export default async function RentalRequestsPage() {
                                     ).toLocaleDateString()}</span>
 
                                     <span>
-                                        {request.status === "ACTIVE" ? <Button >To PAY</Button>:""}
+                                        {request.status === "APPROVED" ? <Button >To PAY</Button>:""}
                                     </span>
                                 </div>
                             </div>

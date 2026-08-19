@@ -2,39 +2,13 @@ import Link from "next/link";
 
 import {
     ArrowUpRight,
-    BookOpen,
-    MapPin,
+        MapPin,
 } from "lucide-react";
 
 import BookingStatus from "./booking-status";
 import { RequestStatsProps } from "@/lib/rentalsTypes";
 
-const bookings = [
-    {
-        id: "1",
-        property: "Modern Family Apartment",
-        location: "Dhaka, Bangladesh",
-        date: "Aug 20, 2026",
-        amount: "৳25,000",
-        status: "Confirmed",
-    },
-    {
-        id: "2",
-        property: "Cozy Lake View House",
-        location: "Jashore, Bangladesh",
-        date: "Aug 24, 2026",
-        amount: "৳18,000",
-        status: "Pending",
-    },
-    {
-        id: "3",
-        property: "Luxury City Apartment",
-        location: "Dhaka, Bangladesh",
-        date: "Sep 02, 2026",
-        amount: "৳35,000",
-        status: "Confirmed",
-    },
-];
+
 
 export default function RecentBookings({ rentals }: RequestStatsProps) {
 
@@ -63,8 +37,7 @@ export default function RecentBookings({ rentals }: RequestStatsProps) {
                         flex items-center gap-1
                         text-sm font-medium
                         text-primary
-                        hover:underline
-                    "
+                        hover:underline "
                 >
                     View all
                     <ArrowUpRight className="size-4" />
@@ -101,7 +74,7 @@ export default function RecentBookings({ rentals }: RequestStatsProps) {
                                 new Date(a.createdAt).getTime()
                         ).slice(0, 2).map((booking) => (
                             <tr
-                                key={booking.id}
+                                key={booking.id} 
                                 className="transition hover:bg-muted/30"
                             >
                                 <td className="px-6 py-4">

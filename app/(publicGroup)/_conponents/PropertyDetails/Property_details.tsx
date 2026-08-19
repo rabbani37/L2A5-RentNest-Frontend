@@ -16,25 +16,18 @@ import {
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
-import { getSingleProperty } from "../../properties/_actionProperties/getSingleProperty";
-import { SkeletonDemo } from "../../properties/[id]/SkeletoneDemo";
-
-
-
+import { Separator } from "@/components/ui/separator"; import Image from "next/image"; import { getSingleProperty } from "../../properties/_actionProperties/getSingleProperty";
+import { RequestToRentDialog } from "../RequestToRentDialog";
+import { getToken } from "@/utility/getToken";
 
 
 export default async function PropertyDetails({ id }: { id: string }) {
-
-
     const property = await getSingleProperty(id)
+    const { accessToken } = await getToken();
+    const isAuthenticated = Boolean(accessToken);
 
-    if (!property) {
-        return <SkeletonDemo />
-    }
+
 
     return (
         <main className="min-h-screen bg-background">
@@ -83,9 +76,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                         </div>
 
                         <h1 className="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-                            {property?.title}
-                        </h1>
-
+                            {property?.title}                        </h1>
                         <div className="mt-3 flex items-center gap-2 text-muted-foreground">
                             <MapPin className="size-4 shrink-0 text-primary" />
 
@@ -266,7 +257,7 @@ export default async function PropertyDetails({ id }: { id: string }) {
                         </section>
                     </div>
 
-                  
+
 
                     <aside className="space-y-6">
 
@@ -286,9 +277,10 @@ export default async function PropertyDetails({ id }: { id: string }) {
                             </CardHeader>
 
                             <CardContent className="space-y-4">
-                                <Button className="h-11 w-full">
-                                    Request to Rent
-                                </Button>
+                                <span className="h-11 w-full">
+
+                                    <RequestToRentDialog isAuthenticated={isAuthenticated} propertyId={property.id} />
+                                </span>
 
 
                                 <p className="text-center text-xs leading-5 text-muted-foreground">

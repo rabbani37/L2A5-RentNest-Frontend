@@ -59,7 +59,6 @@ export const handleRequestDialog = async (prevState: RequestState, formData: For
     const result = await res.json()
 
 
-    console.log(result.success);
 
     return result
 }

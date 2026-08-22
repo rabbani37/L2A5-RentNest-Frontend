@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 import DashboardSidebar from "./_components/dashboard-sidebar";
 import { getMe } from "@/service/getMe";
@@ -35,7 +35,7 @@ export default async function DashboardLayout({
                     </h1>
                 </header>
 
-                {/* Desktop Header যদি থাকে */}
+                {/* Desktop Header*/}
                 <header className="hidden h-16 items-center border-b px-6 md:flex">
                     <h1 className="font-semibold">
                     </h1>

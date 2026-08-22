@@ -20,6 +20,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator"; import Image from "next/image"; import { getSingleProperty } from "../../properties/_actionProperties/getSingleProperty";
 import { RequestToRentDialog } from "../RequestToRentDialog";
 import { getToken } from "@/utility/getToken";
+import { getMe } from "@/service/getMe";
+import { dashboardMenus } from "@/app/(dashbordGroup)/_config/dashboard-menu";
 
 
 export default async function PropertyDetails({ id }: { id: string }) {
@@ -27,6 +29,9 @@ export default async function PropertyDetails({ id }: { id: string }) {
     const { accessToken } = await getToken();
     const isAuthenticated = Boolean(accessToken);
 
+    const user = (await getMe()).data
+
+    console.log(user);
 
 
     return (
@@ -279,7 +284,11 @@ export default async function PropertyDetails({ id }: { id: string }) {
                             <CardContent className="space-y-4">
                                 <span className="h-11 w-full">
 
-                                    <RequestToRentDialog isAuthenticated={isAuthenticated} propertyId={property.id} />
+                                    {
+                                        user?.role === "TENANT" ? <RequestToRentDialog isAuthenticated={isAuthenticated} propertyId={property.id} />
+                                            : ""
+                                    }
+
                                 </span>
 
 
@@ -343,13 +352,30 @@ export default async function PropertyDetails({ id }: { id: string }) {
                 {/* =======BACK BUTTON========= */}
 
                 <div className="mt-10">
-                    <Link
-                        href="/properties"
-                        className="inline-flex h-10 items-center justify-center gap-2 rounded-md border bg-background px-4 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
-                    >
-                        <ArrowLeft className="size-4" />
-                        Back to Properties
-                    </Link>
+
+
+                    {
+                        user?.role === "TENANT" ? <Link
+                            href="/properties"
+                            className="inline-flex h-10 items-center justify-center gap-2 rounded-md border bg-background px-4 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                        >
+                            <ArrowLeft className="size-4" />
+                            Back to Properties
+                        </Link>
+
+                            : <Link
+                                href={user?.role === "TENANT" ? "/dashboard"
+                                    : user?.role === "LANDLORD" ? "/landlord-dashboard" : user?.role === "ADMIN" ? "/admin-dashboard" : ""
+                                }
+                                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border bg-background px-4 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                            >
+                                <ArrowLeft className="size-4" />
+                                Back to Dashboard
+                            </Link>
+                    }
+
+
+
                 </div>
             </div>
         </main>

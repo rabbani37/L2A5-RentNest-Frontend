@@ -23,7 +23,7 @@ export const dashboardMenus = {
             icon: LayoutDashboard,
         },
         {
-            title: "Rental Requests",
+            title: "My Requests",
             href: "/dashboard/rental-requests",
             icon: CalendarDays,
         },
@@ -50,23 +50,13 @@ export const dashboardMenus = {
         },
         {
             title: "My Properties",
-            href: "/landlord-dashboard/properties",
+            href: "/landlord-dashboard/my-properties",
             icon: Building2,
         },
         {
-            title: "Rental Requests",
-            href: "/landlord-dashboard/rental-requests",
+            title: "Incoming Request",
+            href: "/landlord-dashboard/incoming-request",
             icon: CalendarDays,
-        },
-        {
-            title: "Rental History",
-            href: "/landlord-dashboard/rental-history",
-            icon: CalendarDays,
-        },
-        {
-            title: "Reviews",
-            href: "/landlord-dashboard/reviews",
-            icon: MessageSquare,
         },
         {
             title: "Profile",

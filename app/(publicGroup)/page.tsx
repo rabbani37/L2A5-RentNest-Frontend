@@ -17,7 +17,6 @@ export default async function Home() {
 
   const properties = await getPropertiesForHome()
 
-  // console.log("From Homepage...", propertesForHome);
 
 
 

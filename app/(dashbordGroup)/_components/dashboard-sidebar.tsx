@@ -230,7 +230,6 @@ export default function DashboardSidebar({ user }: NavbarProps) {
                     <SidebarMenuItem>
 
                         <SidebarMenuButton
-                            onClick={handleLogout}
                             tooltip="Logout"
                             className="mb-3  rounded-md border bg-background hover:border-primary text-sm  transition-colors  px-4"
                         >

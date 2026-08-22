@@ -29,32 +29,26 @@ export default function QuickActions() {
 
             <CardContent className="space-y-3">
                 <QuickAction
-                    href="/landlord-dashboard/properties/new"
+                    href="/landlord-dashboard/my-properties/new"
                     icon={Plus}
                     title="Add New Property"
                     description="Create a new listing"
                 />
 
                 <QuickAction
-                    href="/landlord-dashboard/properties"
+                    href="/landlord-dashboard/my-properties"
                     icon={Building2}
                     title="Manage Properties"
                     description="View and edit listings"
                 />
 
                 <QuickAction
-                    href="/landlord-dashboard/requests"
+                    href="/landlord-dashboard/incoming-request"
                     icon={CalendarDays}
-                    title="Booking Requests"
+                    title="Incoming Requests"
                     description="Review tenant requests"
                 />
 
-                <QuickAction
-                    href="/landlord-dashboard/payments"
-                    icon={DollarSign}
-                    title="View Payments"
-                    description="Check your earnings"
-                />
             </CardContent>
         </Card>
     );

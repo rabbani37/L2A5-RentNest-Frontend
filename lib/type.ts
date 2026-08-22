@@ -40,13 +40,13 @@ export type IProperty = {
     createdAt: string;
     updatedAt: string;
 
-    category: {
+    category?: {
         id: string;
         name: string;
         createdAt: string;
     };
 
-    landlord: {
+    landlord?: {
         id: string;
         name: string;
         email: string;
@@ -54,6 +54,15 @@ export type IProperty = {
     };
 };
 
+
+export interface StatsCardProps {
+    title: string;
+    value: string;
+    description: string;
+    icon: React.ElementType;
+    href: string;
+    highlight?: boolean;
+}
 
 
 
@@ -63,6 +72,4 @@ export type IProperty = {
 export type IPropertiesCardProps = {
     properties: IProperty[];
 };
-
-
 

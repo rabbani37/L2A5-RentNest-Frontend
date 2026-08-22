@@ -20,11 +20,10 @@ import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { handleRequestDialog } from "../_actions/handleRequestDialogForm";
 import { RequestToRentDialogProps } from "@/lib/rentalsTypes";
-import { useRouter } from "next/navigation";
 
 
 
-export function RequestToRentDialog({ propertyId, isAuthenticated, }: RequestToRentDialogProps) {
+export function RequestToRentDialog({ propertyId,  }: RequestToRentDialogProps) {
 
   const [state, action, pending] = useActionState(handleRequestDialog, {
     success: false,
@@ -32,20 +31,9 @@ export function RequestToRentDialog({ propertyId, isAuthenticated, }: RequestToR
   })
 
 
-  const router = useRouter();
+
   const [open, setOpen] = useState(false);
 
-  const handleRequestClick = () => {
-    if (!isAuthenticated) {
-      router.push(
-        `/auth/login?redirect=/properties/${propertyId}`
-      );
-
-      return;
-    }
-
-    setOpen(true);
-  };
 
 
   useEffect(() => {
@@ -60,7 +48,7 @@ export function RequestToRentDialog({ propertyId, isAuthenticated, }: RequestToR
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <Button onClick={handleRequestClick} render={<DialogTrigger />} className="h-11 w-full rounded-xl">
+      <Button  render={<DialogTrigger />} className="h-11 w-full rounded-xl">
         Request to Rent
       </Button>
 

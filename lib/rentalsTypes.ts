@@ -52,3 +52,23 @@ export interface RequestToRentDialogProps {
 }
 
 
+export interface IRequestOfLandlordProperty {
+    id: string;
+    tenantId: string;
+    propertyId: string;
+    status: "PENDING" | "APPROVED" | "REJECTED" | "ACTIVE" | "COMPLETED";
+    moveInDate: string;
+    message: string;
+    createdAt: string;
+    updatedAt: string;
+    property: {
+        title: string;
+        price: string;
+        location: string;
+    };
+    tenant: {
+        name: string;
+        role: "TENANT";
+        status: "ACTIVE" | "INACTIVE" | "BANNED";
+    };
+}

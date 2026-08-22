@@ -2,14 +2,21 @@ import Link from "next/link";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { PropertyManageDialog } from "../my-properties/_components/PropertyManageDialog";
+import { getToken } from "@/utility/getToken";
 
 interface LandlordWelcomeProps {
     userName: string;
 }
 
-export default function LandlordWelcome({
+export default async function LandlordWelcome({
     userName,
 }: LandlordWelcomeProps) {
+
+
+
+    const { accessToken } = await getToken();
+    const isAuthenticated = Boolean(accessToken);
     return (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -27,11 +34,8 @@ export default function LandlordWelcome({
                 </p>
             </div>
 
-            <Link href="/landlord-dashboard/properties/new">
-                <Button className="w-full rounded-xl font-semibold shadow-2xl sm:w-auto">
-                    <Plus className="size-5" />
-                    <span>Add Property</span>
-                </Button>
+            <Link href="/landlord-dashboard">
+                <PropertyManageDialog isAuthenticated={isAuthenticated} />
             </Link>
         </div>
     );

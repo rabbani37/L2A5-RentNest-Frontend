@@ -24,53 +24,18 @@ interface IRBRProps {
     requests: IRequestOfLandlordProperty[];
 }
 
-export default function RecentBookingRequests({
+export default function IncomingRequest({
     requests,
 }: IRBRProps) {
-    // const requests = [
-    //     {
-    //         id: "1",
-    //         tenant: "Rahim Ahmed",
-    //         property: "Actual Updated: Modern Apartment in Dhanmondi",
-    //         requestedDate: "07/08/2026",
-    //         moveInDate: "20/08/2026",
-    //         comment:
-    //             "I would like to request this property for rent. I am a working professional with a stable income.",
-    //         status: "Pending" as const,
-    //     },
-    //     {
-    //         id: "2",
-    //         tenant: "Karim Hasan",
-    //         property: "Big Size Duplex Home",
-    //         requestedDate: "06/08/2026",
-    //         moveInDate: "25/08/2026",
-    //         comment:
-    //             "The property looks suitable for my family. I would like to move in as soon as possible.",
-    //         status: "Approved" as const,
-    //     },
-    // ];
+
 
     return (
-        <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                    <CardTitle>
-                        Latest Booking Requests
-                    </CardTitle>
+        <Card >
+    
 
-                    <p className="mt-1 text-sm text-muted-foreground">
-                        Latest requests from tenants.
-                    </p>
-                </div>
-
-                <Button variant="outline" size="sm">
-                    View all
-                </Button>
-            </CardHeader>
-
-            <CardContent>
+            <CardContent >
                 <div className="space-y-4">
-                    {requests.slice(0,2).map((request) => (
+                    {requests.map((request) => (
                         <BookingRequest
                             key={request.id}
                             tenant={request.tenant.name || "User Name"}
@@ -180,7 +145,7 @@ function BookingRequest({
 
 
 
-                    <Button  variant="secondary" size="sm">
+                    <Button variant="secondary" size="sm">
                         <span className="flex gap-2">Edit <SquarePen /></span>
                     </Button>
 
@@ -188,4 +153,6 @@ function BookingRequest({
             </div>
         </div>
     );
+
+
 }

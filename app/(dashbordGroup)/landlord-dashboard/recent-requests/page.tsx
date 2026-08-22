@@ -55,24 +55,24 @@ export default async function RentalRequestsPage() {
                                         </div>
                                     </div>
 
-                                    <Badge
-                                        variant="outline"
-                                        className={
-                                            request.status === "PENDING"
-                                                ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-600"
-                                                : request.status === "APPROVED"
-                                                    ? "border-green-500/30 bg-green-500/10 text-green-600"
-                                                    : request.status === "ACTIVE"
-                                                        ? "border-green-500/30 bg-green-500/10 text-green-600"
-                                                        : request.status === "REJECTED"
-                                                            ? "border-red-500/30 bg-red-500/10 text-red-600"
-                                                            : request.status === "COMPLETED"
-                                                                ? "border-blue-500/30 bg-blue-500/10 text-gray-600"
-                                                                : "border-muted bg-muted text-muted-foreground"
-                                        }
-                                    >
-                                        {request.status}
-                                    </Badge>
+                                   <Badge
+    variant="outline"
+    className={
+        request.status === "PENDING"
+            ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-600"
+            : request.status === "APPROVED"
+            ? "border-green-500/30 bg-green-500/10 text-green-600"
+            : request.status === "ACTIVE"
+            ? "border-green-500/30 bg-green-500/10 text-green-600"
+            : request.status === "REJECTED"
+            ? "border-red-500/30 bg-red-500/10 text-red-600"
+            : request.status === "COMPLETED"
+            ? "border-blue-500/30 bg-blue-500/10 text-gray-600"
+            : "border-muted bg-muted text-muted-foreground"
+    }
+>
+    {request.status}
+</Badge>
                                 </div>
 
                                 <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
@@ -115,12 +115,12 @@ export default async function RentalRequestsPage() {
 
                                 <div className="mt-4 border-t pt-3 text-xs text-muted-foreground flex justify-between items-center">
                                     <span>Requested on{" "}
-                                        {new Date(
-                                            request.createdAt
-                                        ).toLocaleDateString()}</span>
+                                    {new Date(
+                                        request.createdAt
+                                    ).toLocaleDateString()}</span>
 
                                     <span>
-                                        {request.status === "APPROVED" ? <Button >To PAY</Button> : ""}
+                                        {request.status === "APPROVED" ? <Button >To PAY</Button>:""}
                                     </span>
                                 </div>
                             </div>

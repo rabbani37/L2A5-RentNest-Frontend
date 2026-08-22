@@ -30,16 +30,7 @@ export default function PropertyPerformance() {
                     </p>
                 </div>
 
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    
-                >
-                    <Link href="/landlord-dashboard/properties">
-                        View all
-                        <ArrowUpRight className="ml-1 size-4" />
-                    </Link>
-                </Button>
+                
             </CardHeader>
 
             <CardContent>
